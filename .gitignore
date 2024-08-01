@@ -1,0 +1,25 @@
+# Ignore Xcode project user data
+*.xcuserdata
+*.xcuserstate
+
+# Ignore build output
+build/
+DerivedData/
+
+# Ignore Pods directory
+Pods/
+
+# Ignore Carthage directory
+Carthage/
+
+# Ignore fastlane build logs
+fastlane/report.xml
+fastlane/Preview.html
+fastlane/screenshots/**/*.png
+fastlane/test_output/**/*.xml
+
+# Ignore Xcode workspace
+xcuserdata/
+
+# Ignore IDE settings
+.idea/
