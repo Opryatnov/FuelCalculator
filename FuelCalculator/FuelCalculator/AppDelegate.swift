@@ -6,14 +6,22 @@
 //
 
 import UIKit
+import FirebaseCore
+import GoogleMobileAds
+import AppTrackingTransparency
+import AdSupport
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
-
-
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+            self.requestTrackingAuthorization()
+        }
+        FirebaseApp.configure()
+        GADMobileAds.sharedInstance().start(completionHandler: nil)
+//        GADMobileAds.sharedInstance().requestConfiguration.testDeviceIdentifiers = [ "cf56212da18835a92d4b385bf91d01fc" ]
+        fetchCurrencies()
         return true
     }
 
@@ -31,6 +39,35 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Use this method to release any resources that were specific to the discarded scenes, as they will not return.
     }
 
-
+    private func fetchCurrencies() {
+        NetworkService.shared.getCurrencyList(networkProvider: NetworkRequestProviderImpl()) { result in
+            switch result {
+            case .success:
+                break
+            case .failure:
+                break
+            }
+        }
+    }
+    
+    @objc private func requestTrackingAuthorization() {
+        if #available(iOS 14, *) {
+            ATTrackingManager.requestTrackingAuthorization { status in
+                switch status {
+                case .authorized:
+                    print("Tracking authorization status: Authorized")
+                case .denied:
+                    print("Tracking authorization status: Denied")
+                case .restricted:
+                    print("Tracking authorization status: Restricted")
+                case .notDetermined:
+                    print("Tracking authorization status: Not Determined")
+                @unknown default:
+                    print("Tracking authorization status: Unknown")
+                }
+            }
+        } else {
+            print("Tracking authorization is not available for iOS versions below 14.0")
+        }
+    }
 }
-

@@ -41,7 +41,6 @@ final class NetworkService {
                             currency.nameEnglish = additionalCurrencyValues.nameEnglish
                         }
                     }
-                    HUD.shared.hide()
                     self.allCurrencies = currencies
                     let belarusCurrency: CurrencyData = CurrencyData(
                         currencyID: 0,
@@ -59,6 +58,7 @@ final class NetworkService {
                     )
                     self.allCurrencies?.insert(belarusCurrency, at: 0)
                     self.fetchedCurrencies = self.allCurrencies
+                    HUD.shared.hide()
                     completion(.success(currencies))
                 }
             case .failure(let error):

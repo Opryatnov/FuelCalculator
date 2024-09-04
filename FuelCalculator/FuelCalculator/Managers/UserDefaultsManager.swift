@@ -16,23 +16,36 @@ final class UserDefaultsManager {
         
     private let userDefaults = UserDefaults.standard
     @Published var isChangedFavoriteList: Bool?
+    @Published var isChangedFuelFavoriteList: Bool?
     
-    func setFavoriteCurrenciesCode(_ favoriteCurrenciesCode: Int) {
-        var tempCurrenciesCode: [Int] = userDefaults.array(forKey: Key.currenciesKey) as? [Int] ?? []
-        tempCurrenciesCode.append(favoriteCurrenciesCode)
-        userDefaults.set(tempCurrenciesCode.unique, forKey: Key.currenciesKey)
+    func setFavoriteCurrencyCode(_ favoriteCurrencyCode: Int) {
+        userDefaults.set(favoriteCurrencyCode, forKey: Key.currenciesKey)
     }
     
-    func removeFavorite(_ favoriteCurrenciesCode: Int) {
-        var tempCurrenciesCode: [Int] = userDefaults.array(forKey: Key.currenciesKey) as? [Int] ?? []
-        tempCurrenciesCode.removeAll(where: { $0 == favoriteCurrenciesCode })
+    func setFavoriteFuelCode(_ favoriteFuelCode: String) {
+        var tempFuelCode: [String] = userDefaults.array(forKey: Key.fuelKey) as? [String] ?? []
+        tempFuelCode.append(favoriteFuelCode)
+        userDefaults.set(tempFuelCode.unique, forKey: Key.fuelKey)
+    }
+    
+    func removeFavoriteFuel(_ favoriteFuelCode: String) {
+        var tempFuelCode: [String] = userDefaults.array(forKey: Key.fuelKey) as? [String] ?? []
+        tempFuelCode.removeAll(where: { $0 == favoriteFuelCode })
         
-        userDefaults.set(tempCurrenciesCode.unique, forKey: Key.currenciesKey)
+        userDefaults.set(tempFuelCode.unique, forKey: Key.fuelKey)
     }
     
-    func getFavoriteCurrenciesCode() -> [Int]? {
-        guard let currenciesCode = userDefaults.array(forKey: Key.currenciesKey) as? [Int] else { return nil }
-        return currenciesCode
+    func removeFavorite() {
+        userDefaults.set(nil, forKey: Key.currenciesKey)
+    }
+    
+    func getFavoriteCurrencyCode() -> Int? {
+        userDefaults.integer(forKey: Key.currenciesKey)
+    }
+    
+    func getFavoriteFuelCode() -> [String]? {
+        guard let fuelCode = userDefaults.array(forKey: Key.fuelKey) as? [String] else { return nil }
+        return fuelCode
     }
 }
 
@@ -42,5 +55,6 @@ extension UserDefaultsManager {
     
     enum Key {
         static let currenciesKey = "FavoriteCurrencies"
+        static let fuelKey = "FavoriteFuel"
     }
 }

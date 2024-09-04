@@ -7,19 +7,23 @@
 
 import Foundation
 
-struct Fuel: Codable {
+final class Fuel: Codable {
     let name: String?
     let amount: String?
     var fuelCode: String?
     var fuelName_ENG: String?
     var fuelName_BEL: String?
+    var isSelected: Bool
     
-    init(name: String?, amount: String?, fuelCode: String? = nil, fuelName_ENG: String? = nil, fuelName_BEL: String? = nil) {
+    var writeOfCount: Double?
+    
+    init(name: String?, amount: String?, fuelCode: String? = nil, fuelName_ENG: String? = nil, fuelName_BEL: String? = nil, isSelected: Bool = false) {
         self.name = name
         self.amount = amount
         self.fuelCode = fuelCode
         self.fuelName_ENG = fuelName_ENG
         self.fuelName_BEL = fuelName_BEL
+        self.isSelected = isSelected
     }
     
     var convertedAmount: Double? {
@@ -48,5 +52,11 @@ struct Fuel: Codable {
             tempFuelName = fuelName_ENG
         }
         return tempFuelName ?? ""
+    }
+    
+    func getWriteOfAmount(currency: CurrencyData) -> Double? {
+        guard let rate = currency.currencyOfficialRate,
+              let scale = currency.currencyScale else { return nil }
+        return rate / Double(scale)
     }
 }

@@ -1,6 +1,7 @@
-"CONVERTER.TAB.TITLE" = "Конвертер";
+"CONVERTER.TAB.TITLE" = "Калькулятор";
 "CURRENCY.LIST.TAB.TITLE" = "Список валют";
 "FUEL.CALCULATOR.TAB.TITLE" = "Калькулятор топлива";
+"FUEL.LIST.TAB.TITLE" = "Список топлива";
 "SPLASH.MORNING.TITLE" = "Доброе утро";
 "SPLASH.DAY.TITLE" = "Добрый день";
 "SPLASH.EVENING.TITLE" = "Добрый вечер";
@@ -20,3 +21,6 @@
 "YESTERDAY.TITLE" = "Вчера";
 "SELECTED.CURRENCY.BYN.ANALYTICS.ATTENTION" = "Вы выбрали валюту в Белорусских рублях (BYN). \n Для данной валюты аналитика не доступна";
 "ATTENTION" = "Внимание";
+"WRITE.SUM.PLACEHOLDER" = "Введите сумму";
+"WRITE.LITER.PLACEHOLDER" = "Введите количество (л.)";
+"HAS.NOT.SELECTED.CURRENCIES.TITLE" = "Добавить топливо";

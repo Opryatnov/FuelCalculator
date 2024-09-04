@@ -8,6 +8,10 @@
 import UIKit
 import Combine
 
+protocol CurrencyListViewControllerDelegate: AnyObject {
+    func didUpdate()
+}
+
 final class CurrencyListViewController: UIViewController {
     
     // MARK: Constants
@@ -33,12 +37,16 @@ final class CurrencyListViewController: UIViewController {
         return tableView
     }()
     
+    // MARK: Internal properties
+    
+    weak var delegate: CurrencyListViewControllerDelegate?
+    
     // MARK: Private properties
     
     private var currencies: [CurrencyData]?
     private let userDefaultsManager = UserDefaultsManager.shared
-    private var favoriteCurrenciesCode: [Int]? {
-        userDefaultsManager.getFavoriteCurrenciesCode()
+    private var favoriteCurrenciesCode: Int? {
+        userDefaultsManager.getFavoriteCurrencyCode()
     }
     private var currencyType: CurrencyType = .currencyList
     private var cancellables = Set<AnyCancellable>()
@@ -60,19 +68,31 @@ final class CurrencyListViewController: UIViewController {
         tableView.dataSource = self
         tableView.register(CurrencyTableViewCell.self, forCellReuseIdentifier: CurrencyTableViewCell.identifier)
         cancellables.removeAll()
-        loadCurrencies()
+        reactToFetchCurrencies()
+        fetchCurrencies()
     }
     
     // MARK: Private methods
     
-    private func loadCurrencies() {
-        self.currencies = NetworkService.shared.fetchedCurrencies
-//            .sink { currenciesList in
-//                self.currencies = currenciesList
-//                self.favoriteCurrenciesCode?.forEach { code in
-//                    self.currencies?.first(where: { $0.currencyID == code})?.isSelected = true
-//                }
+    private func fetchCurrencies() {
+        NetworkService.shared.getCurrencyList(networkProvider: NetworkRequestProviderImpl()) { result in
+            switch result {
+            case .success:
+                break
+            case .failure:
+                break
+            }
+        }
+    }
+    
+    private func reactToFetchCurrencies() {
+        NetworkService.shared.$fetchedCurrencies
+            .sink { currenciesList in
+                self.currencies = currenciesList
+                self.currencies?.first(where: { $0.currencyID == self.favoriteCurrenciesCode})?.isSelected = true
                 self.tableView.reloadData()
+            }
+            .store(in: &cancellables)
     }
     
     private func configureNavigationBar() {
@@ -108,15 +128,27 @@ extension CurrencyListViewController: UITableViewDataSource, UITableViewDelegate
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard currencyType == .currencyList else { return }
         if let currency = currencies?[indexPath.row] {
-            currency.isSelected.toggle()
+            if currency.currencyID != 0 || (currency.currencyID == 0 && currency.isSelected == false) {
+                currency.isSelected.toggle()
+            }
             guard let currencyID = currency.currencyID else { return }
             if currency.isSelected == true {
-                userDefaultsManager.setFavoriteCurrenciesCode(currencyID)
+                userDefaultsManager.removeFavorite()
+                currencies?.forEach {
+                    if $0.currencyID != currencyID {
+                        $0.isSelected = false
+                    }
+                }
+                userDefaultsManager.setFavoriteCurrencyCode(currencyID)
             } else {
-                userDefaultsManager.removeFavorite(currencyID)
+                if currencyID != 0 {
+                    userDefaultsManager.removeFavorite()
+                }
             }
             userDefaultsManager.isChangedFavoriteList = true
             tableView.reloadData()
+            delegate?.didUpdate()
+            navigationController?.popViewController(animated: true)
         }
     }
 }

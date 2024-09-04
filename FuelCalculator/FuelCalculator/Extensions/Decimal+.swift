@@ -18,4 +18,11 @@ extension Decimal {
         formatter.maximumFractionDigits = max(3, minimumFractionDigits)
         return formatter.string(for: self) ?? ""
     }
+    
+    func formattedWithSeparator(maximumFractionDigits: Int) -> String {
+        let formatter = Formatter.withSeparator
+        formatter.minimumFractionDigits = 0
+        formatter.maximumFractionDigits = maximumFractionDigits
+        return formatter.string(for: self) ?? ""
+    }
 }

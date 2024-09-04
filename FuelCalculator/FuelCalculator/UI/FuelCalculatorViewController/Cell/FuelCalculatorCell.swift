@@ -8,6 +8,10 @@
 import UIKit
 import SnapKit
 
+protocol FuelCalculatorCellDelegate: AnyObject {
+    func didChangeAmount(amount: Double, fuel: Fuel?)
+}
+
 final class FuelCalculatorCell: BaseTableViewCell {
     
     // MARK: Constants
@@ -55,6 +59,15 @@ final class FuelCalculatorCell: BaseTableViewCell {
         return label
     }()
     
+    private let fuelPriceLabel: UILabel = {
+        let label = UILabel()
+        label.textColor = UIColor(resource: .darkSecondary6)
+        label.numberOfLines = 0
+        label.font = UIFont.systemFont(ofSize: 13)
+        
+        return label
+    }()
+    
     private let fuelCodeLabel: UILabel = {
         let label = UILabel()
         label.textColor = UIColor(resource: .darkSecondary6)
@@ -63,18 +76,24 @@ final class FuelCalculatorCell: BaseTableViewCell {
         return label
     }()
     
-    private let fuelPriceLabel: UILabel = {
-        let label = UILabel()
-        label.textColor = .white
-        label.font = UIFont.systemFont(ofSize: 13)
+    private lazy var fuelCountTextField: UITextField = {
+        let textField = UITextField()
+        textField.keyboardType = .decimalPad
+        textField.textColor = .white
+        textField.textAlignment = .right
+        textField.delegate = self
+        let attributes: [NSAttributedString.Key: Any] = [
+            .foregroundColor: UIColor(resource: .gray30),
+            .font: UIFont.systemFont(ofSize: 16)
+        ]
         
-        return label
+        textField.attributedPlaceholder = NSAttributedString(string: LS("WRITE.LITER.PLACEHOLDER"), attributes: attributes)
+        
+        return textField
     }()
     
     private let fuelView: UIView = {
         let view = UIView()
-        view.layer.borderColor = UIColor(resource: .gold1).cgColor
-        view.layer.borderWidth = 1
         view.layer.cornerRadius = 17
         view.backgroundColor = UIColor(resource: .darkGray5)
         
@@ -100,26 +119,40 @@ final class FuelCalculatorCell: BaseTableViewCell {
     // MARK: Internal properties
     
     static let identifier: String = "FuelCalculatorCell"
+    weak var delegate: FuelCalculatorCellDelegate?
+    private var fuel: Fuel?
+    private let inputValidator = ValidationFieldType.balanceInputWithoutNumbersAfterPoint
+    private var currency: CurrencyData?
+    private var convertedPrice: Double?
         
     // MARK: Internal methods
     
-    func fill(fuel: Fuel) {
+    func fill(fuel: Fuel, currency: CurrencyData) {
+        self.fuel = fuel
+        self.currency = currency
         fuelNameLabel.text = fuel.localisedName
         fuelCodeLabel.text = fuel.fuelCode
-        fuelPriceLabel.text = fuel.convertedAmount?.description
-        stackView.addArrangedSubview(fuelNameLabel)
-        stackView.addArrangedSubview(fuelCodeLabel)
+        fuelPriceLabel.text = convertedPrice(currency: currency)
         setupFuelIcons(fuel: fuel)
+        if let writeOfAmount = currency.writeOfAmount {
+            let countOfFuel = writeOfAmount / (convertedPrice ?? 1)
+            fuelCountTextField.text = countOfFuel.round(to: 3).description
+        } else {
+            fuelCountTextField.text = nil
+        }
     }
     
     // MARK: Private methods
     
     override func configureViews() {
         backgroundColor = .clear
-        addSubview(fuelView)
+        contentView.addSubview(fuelView)
         fuelView.addSubview(fuelIconImageView)
         fuelView.addSubview(stackView)
-        fuelView.addSubview(fuelPriceLabel)
+        stackView.addArrangedSubview(fuelNameLabel)
+        stackView.addArrangedSubview(fuelCodeLabel)
+        stackView.addArrangedSubview(fuelPriceLabel)
+        fuelView.addSubview(fuelCountTextField)
     }
     
     override func setupConstraints() {
@@ -137,16 +170,62 @@ final class FuelCalculatorCell: BaseTableViewCell {
         stackView.snp.makeConstraints {
             $0.leading.equalTo(fuelIconImageView.snp.trailing).inset(-Constants.StackView.leftInset)
             $0.top.bottom.equalToSuperview().inset(11)
-            $0.trailing.lessThanOrEqualTo(fuelPriceLabel.snp.leading).inset(-Constants.FuelPriceLabel.leftInset)
+            $0.trailing.equalTo(fuelCountTextField.snp.leading).inset(-Constants.FuelPriceLabel.leftInset)
         }
         
-        fuelPriceLabel.snp.makeConstraints {
+        fuelCountTextField.snp.makeConstraints {
             $0.trailing.equalToSuperview().inset(Constants.FuelPriceLabel.rightInset)
-            $0.centerY.equalTo(fuelIconImageView)
+            $0.top.bottom.equalToSuperview()
         }
     }
     
     // MARK: Private methods
+    
+    private func convertedPrice(currency: CurrencyData) -> String? {
+        guard let amount = fuel?.amount, let code = currency.currencyAbbreviation else { return nil }
+        if currency.currencyAbbreviation == "BYN" {
+            convertedPrice = amount.toDouble()
+            return amount + " " + code
+        } else {
+            var otherWriteOfAmount: String?
+            if let price = fuel?.convertedAmount {
+                let tempPrice = 1 * (price / (fuel?.getWriteOfAmount(currency: currency) ?? .zero))
+                convertedPrice = tempPrice.round(to: 3)
+                otherWriteOfAmount = "\(tempPrice.round(to: 3)) \(code)"
+            }
+            return otherWriteOfAmount
+        }
+    }
+    
+    private func convertedMultipliedPrice(amount: Double?) {
+        fuel?.writeOfCount = amount
+        let result = (amount ?? .zero) * (fuelPriceLabel.text?.trimCurrency()?.toDouble() ?? .zero)
+        delegate?.didChangeAmount(amount: result.round(to: 2), fuel: fuel)
+    }
+    
+    private func fillTextField(fuel: Fuel, currency: CurrencyData) {
+        if currency.isSelected == false {
+            if fuelCountTextField.text?.isEmpty == true {
+                configureTextFieldPlaceholder()
+            } else {
+                convertedMultipliedPrice(amount: fuelCountTextField.text?.toDouble())
+            }
+        } else {
+            guard let writeOfAmount = currency.writeOfAmount, 
+                    let writeOfCount = fuel.getWriteOfAmount(currency: currency) else { return }
+            fuelCountTextField.text = (writeOfAmount / (fuel.amount?.toDouble() ?? 1)).round(to: 2).description
+        }
+        fuelCountTextField.addDoneButtonOnKeyboard()
+    }
+    
+    private func configureTextFieldPlaceholder() {
+        let attributes: [NSAttributedString.Key: Any] = [
+            .foregroundColor: UIColor(resource: .gray30),
+            .font: UIFont.systemFont(ofSize: 16)
+        ]
+        
+        fuelCountTextField.attributedPlaceholder = NSAttributedString(string: LS("WRITE.LITER.PLACEHOLDER"), attributes: attributes)
+    }
     
     private func setupFuelIcons(fuel: Fuel) {
         var fuelImage: UIImage = UIImage()
@@ -155,6 +234,8 @@ final class FuelCalculatorCell: BaseTableViewCell {
             fuelImage = UIImage(resource: .fuel92)
         case "AI-95":
             fuelImage = UIImage(resource: .fuel95)
+        case "AI-98":
+            fuelImage = UIImage(resource: .fuel98)
         case "Gas":
             fuelImage = UIImage(resource: .fuelGas)
         case "DT":
@@ -167,5 +248,73 @@ final class FuelCalculatorCell: BaseTableViewCell {
             fuelImage = UIImage(resource: .dieselFuel)
         }
         fuelIconImageView.image = fuelImage
+    }
+}
+
+extension FuelCalculatorCell: UITextFieldDelegate {
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        fuelView.layer.borderWidth = 0
+        fuelView.layer.borderColor = UIColor.clear.cgColor
+        if textField.text?.isEmpty == true {
+            configureTextFieldPlaceholder()
+        } else {
+            let receiveAmountString = textField.text?.replacingOccurrences(of: ",", with: "") ?? ""
+            textField.text = receiveAmountString.toAmountFormat()
+        }
+    }
+    
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        fuelCountTextField.addDoneButtonOnKeyboard()
+        currency?.isSelected = false
+        currency?.writeOfAmount = nil
+        textField.placeholder = nil
+        textField.text = "0.00"
+        let receiveAmountString = textField.text?.replacingOccurrences(of: ",", with: "") ?? ""
+        currency?.writeOfAmount = Double(receiveAmountString)?.round()
+        delegate?.didChangeAmount(amount: 0.0, fuel: fuel)
+        fuelView.layer.borderWidth = 1
+        fuelView.layer.borderColor = UIColor(resource: .gold1).cgColor
+        textField.text = nil
+    }
+    
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        let result: Bool
+        guard let textFieldText = textField.text,
+              let range = Range(range, in: textFieldText) else { return true }
+        var updatedText = textFieldText.replacingCharacters(
+            in: range,
+            with: string
+        )
+
+        if updatedText.suffix(1) == "," {
+            let lastIndex = updatedText.index(before: updatedText.endIndex)
+            updatedText.replaceSubrange(lastIndex...lastIndex, with: ["."])
+        }
+        let balanceString = updatedText.replacingOccurrences(of: ",", with: "")
+
+        result = Validator.isValid(balanceString, type: inputValidator)
+
+        if result {
+            let balance = Decimal(string: balanceString) ?? 0
+            var minimumFractionDigits = 0
+            if let dotRange = balanceString.range(of: ".") {
+                let substring = balanceString[dotRange.upperBound...]
+                minimumFractionDigits = substring.count
+            }
+            let finalString = balance.formattedWithSeparator(minimumFractionDigits)
+            textField.text = finalString
+            if let quantity = finalString.toDouble() {
+                convertedMultipliedPrice(amount: quantity)
+                fuel?.writeOfCount = quantity
+            }
+        }
+        return false
+    }
+}
+
+extension String {
+    
+    func trimCurrency() -> String? {
+        self.filter { !$0.isLetter }.trimmingCharacters(in: .whitespacesAndNewlines)
     }
 }

@@ -7,6 +7,16 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2C1BC95B2C63A12600419112 /* AppConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C1BC95A2C63A12600419112 /* AppConstants.swift */; };
+		2CA7BAA52C6C938500F6DD55 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 2CA7BAA42C6C938500F6DD55 /* FirebaseAnalytics */; };
+		2CA7BAA72C6C978500F6DD55 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2CA7BAA62C6C978500F6DD55 /* GoogleService-Info.plist */; };
+		2CACC4A72C5CC3D7008FC7BC /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2CACC4A62C5CC3D7008FC7BC /* Localizable.strings */; };
+		2CACC4AC2C5CD154008FC7BC /* MainTabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CACC4AB2C5CD154008FC7BC /* MainTabBarViewController.swift */; };
+		2CACC4B02C5CD3CA008FC7BC /* SplashScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CACC4AE2C5CD3CA008FC7BC /* SplashScreenViewController.swift */; };
+		2CACC4B12C5CD3CA008FC7BC /* SplashScreenViewController+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CACC4AF2C5CD3CA008FC7BC /* SplashScreenViewController+extension.swift */; };
+		2CACC4B42C5CD857008FC7BC /* FuelListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CACC4B32C5CD857008FC7BC /* FuelListViewController.swift */; };
+		2CACC4B72C5CDA27008FC7BC /* FuelTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CACC4B62C5CDA27008FC7BC /* FuelTableViewCell.swift */; };
+		2CACC4B92C5CE663008FC7BC /* FuelListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2CACC4B82C5CE663008FC7BC /* FuelListViewController.xib */; };
 		2CCA3E702C5BAAA80034812A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CCA3E6F2C5BAAA80034812A /* AppDelegate.swift */; };
 		2CCA3E722C5BAAA80034812A /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CCA3E712C5BAAA80034812A /* SceneDelegate.swift */; };
 		2CCA3E742C5BAAA80034812A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CCA3E732C5BAAA80034812A /* ViewController.swift */; };
@@ -15,10 +25,6 @@
 		2CCA3E972C5BC3850034812A /* SwiftSoup in Frameworks */ = {isa = PBXBuildFile; productRef = 2CCA3E962C5BC3850034812A /* SwiftSoup */; };
 		2CCA3E9A2C5BC3F70034812A /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = 2CCA3E992C5BC3F70034812A /* Lottie */; };
 		2CCA3E9D2C5BC5FA0034812A /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 2CCA3E9C2C5BC5FA0034812A /* Alamofire */; };
-		2CCA3EA12C5BC6800034812A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2CCA3EA02C5BC6800034812A /* LaunchScreen.storyboard */; };
-		2CCA3EA92C5BC7C70034812A /* Localizable (Belarusian (Belarus)).strings in Resources */ = {isa = PBXBuildFile; fileRef = 2CCA3EA72C5BC7C70034812A /* Localizable (Belarusian (Belarus)).strings */; };
-		2CCA3EAC2C5BC7D90034812A /* Localizable (Russian).strings in Resources */ = {isa = PBXBuildFile; fileRef = 2CCA3EAA2C5BC7D90034812A /* Localizable (Russian).strings */; };
-		2CCA3EAF2C5BC7F30034812A /* Localizable (English).strings in Resources */ = {isa = PBXBuildFile; fileRef = 2CCA3EAD2C5BC7F30034812A /* Localizable (English).strings */; };
 		2CCA3EB22C5BC85D0034812A /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2CCA3EB12C5BC85D0034812A /* Colors.xcassets */; };
 		2CCA3EC42C5BC8F10034812A /* UIApplication+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CCA3EB42C5BC8F00034812A /* UIApplication+.swift */; };
 		2CCA3EC52C5BC8F10034812A /* Decimal+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CCA3EB52C5BC8F00034812A /* Decimal+.swift */; };
@@ -66,19 +72,29 @@
 		2CCA3F1C2C5BCDA10034812A /* CurrencyListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CCA3F192C5BCDA10034812A /* CurrencyListViewController.swift */; };
 		2CCA3F1E2C5BCDA10034812A /* CurrencyListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2CCA3F1B2C5BCDA10034812A /* CurrencyListViewController.xib */; };
 		2CCA3F212C5BCDB70034812A /* CurrencyTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CCA3F202C5BCDB70034812A /* CurrencyTableViewCell.swift */; };
+		2CD6642A2C6CE8F300CE9EF9 /* GoogleMobileAds in Frameworks */ = {isa = PBXBuildFile; productRef = 2CD664292C6CE8F300CE9EF9 /* GoogleMobileAds */; };
+		2CD6642C2C6CEA0700CE9EF9 /* DashedBorderButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CD6642B2C6CEA0700CE9EF9 /* DashedBorderButton.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2C1BC95A2C63A12600419112 /* AppConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppConstants.swift; sourceTree = "<group>"; };
+		2CA7BA9D2C6C8F4A00F6DD55 /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
+		2CA7BAA62C6C978500F6DD55 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		2CACC4A52C5CC3D7008FC7BC /* be-BY */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "be-BY"; path = "be-BY.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		2CACC4A82C5CC3DA008FC7BC /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		2CACC4A92C5CC3DB008FC7BC /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
+		2CACC4AB2C5CD154008FC7BC /* MainTabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarViewController.swift; sourceTree = "<group>"; };
+		2CACC4AE2C5CD3CA008FC7BC /* SplashScreenViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SplashScreenViewController.swift; sourceTree = "<group>"; };
+		2CACC4AF2C5CD3CA008FC7BC /* SplashScreenViewController+extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SplashScreenViewController+extension.swift"; sourceTree = "<group>"; };
+		2CACC4B32C5CD857008FC7BC /* FuelListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FuelListViewController.swift; sourceTree = "<group>"; };
+		2CACC4B62C5CDA27008FC7BC /* FuelTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FuelTableViewCell.swift; sourceTree = "<group>"; };
+		2CACC4B82C5CE663008FC7BC /* FuelListViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = FuelListViewController.xib; path = FuelCalculator/UI/FuelListViewController/FuelListViewController.xib; sourceTree = SOURCE_ROOT; };
 		2CCA3E6C2C5BAAA80034812A /* FuelCalculator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FuelCalculator.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2CCA3E6F2C5BAAA80034812A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2CCA3E712C5BAAA80034812A /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		2CCA3E732C5BAAA80034812A /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		2CCA3E782C5BAAA90034812A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2CCA3E7D2C5BAAA90034812A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		2CCA3EA02C5BC6800034812A /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
-		2CCA3EA82C5BC7C70034812A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = "en.lproj/Localizable (Belarusian (Belarus)).strings"; sourceTree = "<group>"; };
-		2CCA3EAB2C5BC7D90034812A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = "en.lproj/Localizable (Russian).strings"; sourceTree = "<group>"; };
-		2CCA3EAE2C5BC7F30034812A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = "en.lproj/Localizable (English).strings"; sourceTree = "<group>"; };
 		2CCA3EB12C5BC85D0034812A /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
 		2CCA3EB42C5BC8F00034812A /* UIApplication+.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIApplication+.swift"; sourceTree = "<group>"; };
 		2CCA3EB52C5BC8F00034812A /* Decimal+.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Decimal+.swift"; sourceTree = "<group>"; };
@@ -126,6 +142,7 @@
 		2CCA3F192C5BCDA10034812A /* CurrencyListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CurrencyListViewController.swift; sourceTree = "<group>"; };
 		2CCA3F1B2C5BCDA10034812A /* CurrencyListViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CurrencyListViewController.xib; sourceTree = "<group>"; };
 		2CCA3F202C5BCDB70034812A /* CurrencyTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CurrencyTableViewCell.swift; sourceTree = "<group>"; };
+		2CD6642B2C6CEA0700CE9EF9 /* DashedBorderButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashedBorderButton.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -133,9 +150,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2CD6642A2C6CE8F300CE9EF9 /* GoogleMobileAds in Frameworks */,
 				2CCA3E942C5BC3720034812A /* SnapKit in Frameworks */,
 				2CCA3E9D2C5BC5FA0034812A /* Alamofire in Frameworks */,
 				2CCA3E972C5BC3850034812A /* SwiftSoup in Frameworks */,
+				2CA7BAA52C6C938500F6DD55 /* FirebaseAnalytics in Frameworks */,
 				2CCA3E9A2C5BC3F70034812A /* Lottie in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -143,11 +162,62 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2C1BC9592C63A11800419112 /* AppConstants */ = {
+			isa = PBXGroup;
+			children = (
+				2C1BC95A2C63A12600419112 /* AppConstants.swift */,
+			);
+			path = AppConstants;
+			sourceTree = "<group>";
+		};
+		2CA7BAA32C6C938500F6DD55 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		2CACC4AA2C5CD13C008FC7BC /* TabBar */ = {
+			isa = PBXGroup;
+			children = (
+				2CACC4AB2C5CD154008FC7BC /* MainTabBarViewController.swift */,
+			);
+			path = TabBar;
+			sourceTree = "<group>";
+		};
+		2CACC4AD2C5CD3B1008FC7BC /* SplashScreen */ = {
+			isa = PBXGroup;
+			children = (
+				2CACC4AE2C5CD3CA008FC7BC /* SplashScreenViewController.swift */,
+				2CACC4AF2C5CD3CA008FC7BC /* SplashScreenViewController+extension.swift */,
+			);
+			path = SplashScreen;
+			sourceTree = "<group>";
+		};
+		2CACC4B22C5CD83F008FC7BC /* FuelListViewController */ = {
+			isa = PBXGroup;
+			children = (
+				2CACC4B52C5CDA1A008FC7BC /* Cell */,
+				2CACC4B32C5CD857008FC7BC /* FuelListViewController.swift */,
+			);
+			path = FuelListViewController;
+			sourceTree = "<group>";
+		};
+		2CACC4B52C5CDA1A008FC7BC /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				2CACC4B62C5CDA27008FC7BC /* FuelTableViewCell.swift */,
+				2CACC4B82C5CE663008FC7BC /* FuelListViewController.xib */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
 		2CCA3E632C5BAAA80034812A = {
 			isa = PBXGroup;
 			children = (
 				2CCA3E6E2C5BAAA80034812A /* FuelCalculator */,
 				2CCA3E6D2C5BAAA80034812A /* Products */,
+				2CA7BAA32C6C938500F6DD55 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -162,6 +232,7 @@
 		2CCA3E6E2C5BAAA80034812A /* FuelCalculator */ = {
 			isa = PBXGroup;
 			children = (
+				2C1BC9592C63A11800419112 /* AppConstants */,
 				2CCA3EF42C5BCA0D0034812A /* Network */,
 				2CCA3EEB2C5BC9D20034812A /* JsonFiles */,
 				2CCA3EE22C5BC99E0034812A /* Helpers */,
@@ -174,8 +245,9 @@
 				2CCA3E6F2C5BAAA80034812A /* AppDelegate.swift */,
 				2CCA3E712C5BAAA80034812A /* SceneDelegate.swift */,
 				2CCA3E732C5BAAA80034812A /* ViewController.swift */,
-				2CCA3EA02C5BC6800034812A /* LaunchScreen.storyboard */,
 				2CCA3E7D2C5BAAA90034812A /* Info.plist */,
+				2CA7BA9D2C6C8F4A00F6DD55 /* PrivacyInfo.xcprivacy */,
+				2CA7BAA62C6C978500F6DD55 /* GoogleService-Info.plist */,
 			);
 			path = FuelCalculator;
 			sourceTree = "<group>";
@@ -183,11 +255,9 @@
 		2CCA3EA42C5BC71E0034812A /* SupportingFiles */ = {
 			isa = PBXGroup;
 			children = (
+				2CACC4A62C5CC3D7008FC7BC /* Localizable.strings */,
 				2CCA3E782C5BAAA90034812A /* Assets.xcassets */,
 				2CCA3EB12C5BC85D0034812A /* Colors.xcassets */,
-				2CCA3EAA2C5BC7D90034812A /* Localizable (Russian).strings */,
-				2CCA3EA72C5BC7C70034812A /* Localizable (Belarusian (Belarus)).strings */,
-				2CCA3EAD2C5BC7F30034812A /* Localizable (English).strings */,
 			);
 			path = SupportingFiles;
 			sourceTree = "<group>";
@@ -195,6 +265,9 @@
 		2CCA3EA62C5BC7320034812A /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				2CACC4B22C5CD83F008FC7BC /* FuelListViewController */,
+				2CACC4AD2C5CD3B1008FC7BC /* SplashScreen */,
+				2CACC4AA2C5CD13C008FC7BC /* TabBar */,
 				2CCA3F182C5BCD870034812A /* CurrencyListViewController */,
 				2CCA3F0E2C5BCD290034812A /* FuelCalculatorViewController */,
 			);
@@ -238,6 +311,7 @@
 			isa = PBXGroup;
 			children = (
 				2CCA3EDA2C5BC9380034812A /* BaseTableViewCell.swift */,
+				2CD6642B2C6CEA0700CE9EF9 /* DashedBorderButton.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -395,6 +469,8 @@
 				2CCA3E962C5BC3850034812A /* SwiftSoup */,
 				2CCA3E992C5BC3F70034812A /* Lottie */,
 				2CCA3E9C2C5BC5FA0034812A /* Alamofire */,
+				2CA7BAA42C6C938500F6DD55 /* FirebaseAnalytics */,
+				2CD664292C6CE8F300CE9EF9 /* GoogleMobileAds */,
 			);
 			productName = FuelCalculator;
 			productReference = 2CCA3E6C2C5BAAA80034812A /* FuelCalculator.app */;
@@ -431,6 +507,8 @@
 				2CCA3E952C5BC3850034812A /* XCRemoteSwiftPackageReference "SwiftSoup" */,
 				2CCA3E982C5BC3F70034812A /* XCRemoteSwiftPackageReference "lottie-spm" */,
 				2CCA3E9B2C5BC5FA0034812A /* XCRemoteSwiftPackageReference "Alamofire" */,
+				2CA7BAA02C6C927700F6DD55 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				2CD664282C6CE8F300CE9EF9 /* XCRemoteSwiftPackageReference "swift-package-manager-google-mobile-ads" */,
 			);
 			productRefGroup = 2CCA3E6D2C5BAAA80034812A /* Products */;
 			projectDirPath = "";
@@ -448,16 +526,15 @@
 			files = (
 				2CCA3F142C5BCD500034812A /* FuelCalculatorViewController.xib in Resources */,
 				2CCA3F1E2C5BCDA10034812A /* CurrencyListViewController.xib in Resources */,
+				2CACC4B92C5CE663008FC7BC /* FuelListViewController.xib in Resources */,
 				2CCA3EF02C5BC9FE0034812A /* allCurrenciesWithLanguages.json in Resources */,
-				2CCA3EAF2C5BC7F30034812A /* Localizable (English).strings in Resources */,
 				2CCA3EF12C5BC9FE0034812A /* loading.json in Resources */,
-				2CCA3EA12C5BC6800034812A /* LaunchScreen.storyboard in Resources */,
-				2CCA3EAC2C5BC7D90034812A /* Localizable (Russian).strings in Resources */,
+				2CACC4A72C5CC3D7008FC7BC /* Localizable.strings in Resources */,
 				2CCA3EF22C5BC9FE0034812A /* currencies.json in Resources */,
 				2CCA3EB22C5BC85D0034812A /* Colors.xcassets in Resources */,
+				2CA7BAA72C6C978500F6DD55 /* GoogleService-Info.plist in Resources */,
 				2CCA3E792C5BAAA90034812A /* Assets.xcassets in Resources */,
 				2CCA3EF32C5BC9FE0034812A /* countries.json in Resources */,
-				2CCA3EA92C5BC7C70034812A /* Localizable (Belarusian (Belarus)).strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -478,12 +555,15 @@
 				2CCA3F052C5BCA970034812A /* CurrencyData.swift in Sources */,
 				2CCA3ED02C5BC8F10034812A /* UIDevice+.swift in Sources */,
 				2CCA3EE82C5BC9BF0034812A /* Validator.swift in Sources */,
+				2CD6642C2C6CEA0700CE9EF9 /* DashedBorderButton.swift in Sources */,
 				2CCA3ED22C5BC8F10034812A /* UICollectionView+Cells.swift in Sources */,
+				2CACC4B12C5CD3CA008FC7BC /* SplashScreenViewController+extension.swift in Sources */,
 				2CCA3ED82C5BC9180034812A /* UIView+Xib.swift in Sources */,
 				2CCA3EC92C5BC8F10034812A /* String+.swift in Sources */,
 				2CCA3EC72C5BC8F10034812A /* TextField+.swift in Sources */,
 				2CCA3ECC2C5BC8F10034812A /* UIColor+Extension.swift in Sources */,
 				2CCA3F212C5BCDB70034812A /* CurrencyTableViewCell.swift in Sources */,
+				2CACC4B72C5CDA27008FC7BC /* FuelTableViewCell.swift in Sources */,
 				2CCA3EC82C5BC8F10034812A /* UIViewController+.swift in Sources */,
 				2CCA3ED32C5BC8F10034812A /* Formatter+.swift in Sources */,
 				2CCA3F092C5BCAB70034812A /* NetworkRequestProviderMockImpl.swift in Sources */,
@@ -493,10 +573,12 @@
 				2CCA3ECA2C5BC8F10034812A /* UIView+.swift in Sources */,
 				2CCA3F1C2C5BCDA10034812A /* CurrencyListViewController.swift in Sources */,
 				2CCA3F172C5BCD680034812A /* FuelCalculatorCell.swift in Sources */,
+				2CACC4AC2C5CD154008FC7BC /* MainTabBarViewController.swift in Sources */,
 				2CCA3F032C5BCA970034812A /* CountryModel.swift in Sources */,
 				2CCA3EE92C5BC9BF0034812A /* HUD.swift in Sources */,
 				2CCA3EE12C5BC9810034812A /* UserDefaultsManager.swift in Sources */,
 				2CCA3EE72C5BC9BF0034812A /* Gradient.swift in Sources */,
+				2C1BC95B2C63A12600419112 /* AppConstants.swift in Sources */,
 				2CCA3E742C5BAAA80034812A /* ViewController.swift in Sources */,
 				2CCA3EC62C5BC8F10034812A /* UIStoryboard+Extension.swift in Sources */,
 				2CCA3F122C5BCD500034812A /* FuelCalculatorViewController.swift in Sources */,
@@ -504,7 +586,9 @@
 				2CCA3EDB2C5BC9380034812A /* BaseTableViewCell.swift in Sources */,
 				2CCA3EDE2C5BC9540034812A /* Navigation.swift in Sources */,
 				2CCA3ECF2C5BC8F10034812A /* UITableView+Cells.swift in Sources */,
+				2CACC4B42C5CD857008FC7BC /* FuelListViewController.swift in Sources */,
 				2CCA3ED12C5BC8F10034812A /* Array+.swift in Sources */,
+				2CACC4B02C5CD3CA008FC7BC /* SplashScreenViewController.swift in Sources */,
 				2CCA3F0B2C5BCACA0034812A /* NetworkRequestProvider.swift in Sources */,
 				2CCA3EFC2C5BCA750034812A /* CountriesManager.swift in Sources */,
 				2CCA3F0D2C5BCADD0034812A /* NetworkService.swift in Sources */,
@@ -517,28 +601,14 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		2CCA3EA72C5BC7C70034812A /* Localizable (Belarusian (Belarus)).strings */ = {
+		2CACC4A62C5CC3D7008FC7BC /* Localizable.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
-				2CCA3EA82C5BC7C70034812A /* en */,
+				2CACC4A52C5CC3D7008FC7BC /* be-BY */,
+				2CACC4A82C5CC3DA008FC7BC /* en */,
+				2CACC4A92C5CC3DB008FC7BC /* ru */,
 			);
-			name = "Localizable (Belarusian (Belarus)).strings";
-			sourceTree = "<group>";
-		};
-		2CCA3EAA2C5BC7D90034812A /* Localizable (Russian).strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				2CCA3EAB2C5BC7D90034812A /* en */,
-			);
-			name = "Localizable (Russian).strings";
-			sourceTree = "<group>";
-		};
-		2CCA3EAD2C5BC7F30034812A /* Localizable (English).strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				2CCA3EAE2C5BC7F30034812A /* en */,
-			);
-			name = "Localizable (English).strings";
+			name = Localizable.strings;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -668,14 +738,16 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = SKFLFSXTGB;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Manual;
+				CURRENT_PROJECT_VERSION = 3;
+				DEVELOPMENT_TEAM = "";
+				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = 6X5UG49YNH;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = FuelCalculator/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = "Калькулятор топлива";
+				INFOPLIST_KEY_CFBundleDisplayName = "Калькулятор топлива РБ";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UILaunchStoryboardName = "";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
@@ -684,11 +756,17 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = none.FuelCalculator;
+				PRODUCT_BUNDLE_IDENTIFIER = com.FuelCalculatorBY;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "FuelCalculatorBY dev";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -697,14 +775,16 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = SKFLFSXTGB;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				CODE_SIGN_STYLE = Manual;
+				CURRENT_PROJECT_VERSION = 3;
+				DEVELOPMENT_TEAM = "";
+				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = 6X5UG49YNH;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = FuelCalculator/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = "Калькулятор топлива";
+				INFOPLIST_KEY_CFBundleDisplayName = "Калькулятор топлива РБ";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UILaunchStoryboardName = "";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
@@ -713,11 +793,17 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = none.FuelCalculator;
+				PRODUCT_BUNDLE_IDENTIFIER = com.FuelCalculatorBY;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "com.FuelCalculatorBY release";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
@@ -745,6 +831,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		2CA7BAA02C6C927700F6DD55 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 11.0.0;
+			};
+		};
 		2CCA3E922C5BC3720034812A /* XCRemoteSwiftPackageReference "SnapKit" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/SnapKit/SnapKit.git";
@@ -777,9 +871,22 @@
 				minimumVersion = 5.9.1;
 			};
 		};
+		2CD664282C6CE8F300CE9EF9 /* XCRemoteSwiftPackageReference "swift-package-manager-google-mobile-ads" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/googleads/swift-package-manager-google-mobile-ads.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 11.8.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		2CA7BAA42C6C938500F6DD55 /* FirebaseAnalytics */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2CA7BAA02C6C927700F6DD55 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAnalytics;
+		};
 		2CCA3E932C5BC3720034812A /* SnapKit */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 2CCA3E922C5BC3720034812A /* XCRemoteSwiftPackageReference "SnapKit" */;
@@ -799,6 +906,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 2CCA3E9B2C5BC5FA0034812A /* XCRemoteSwiftPackageReference "Alamofire" */;
 			productName = Alamofire;
+		};
+		2CD664292C6CE8F300CE9EF9 /* GoogleMobileAds */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2CD664282C6CE8F300CE9EF9 /* XCRemoteSwiftPackageReference "swift-package-manager-google-mobile-ads" */;
+			productName = GoogleMobileAds;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

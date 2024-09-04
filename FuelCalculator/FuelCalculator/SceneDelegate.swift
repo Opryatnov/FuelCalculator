@@ -10,14 +10,29 @@ import UIKit
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
-
-
+    
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
+        
         guard let windowScene = (scene as? UIWindowScene) else { return }
-        window = UIWindow(windowScene: windowScene)
-        let viewController = FuelCalculatorViewController()
-        window?.rootViewController = viewController
-        window?.makeKeyAndVisible()
+        
+        showSplashScreen(windowScene: windowScene) {
+            self.setupRootViewController()
+        }
+    }
+    
+    private func showSplashScreen(windowScene: UIWindowScene, completion: @escaping () -> Void) {
+        let viewController = SplashScreenViewController()
+        let window = UIWindow(windowScene: windowScene)
+        window.rootViewController = viewController
+        self.window = window
+        viewController.closeAction = {
+            completion()
+        }
+        window.makeKeyAndVisible()
+    }
+    
+    private func setupRootViewController() {
+        window?.replaceRootViewController(MainTabBarViewController())
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {

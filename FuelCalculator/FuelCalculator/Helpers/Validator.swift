@@ -16,11 +16,14 @@ final class Validator {
 
 enum ValidationFieldType {
     case balanceInputTwoNumbersCurrencyAfterPoint
+    case balanceInputWithoutNumbersAfterPoint
     
     var businessRule: String {
         switch self {
         case .balanceInputTwoNumbersCurrencyAfterPoint:
             return "(^[0-9]{0,6}$|(^[0-9]{0,6}([.][0-9]{0,2})?$))"
+        case .balanceInputWithoutNumbersAfterPoint:
+            return "(^[0-9]{0,9}$)"
         }
     }
 }

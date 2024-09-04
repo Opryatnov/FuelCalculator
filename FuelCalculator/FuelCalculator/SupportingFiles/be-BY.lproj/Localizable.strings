@@ -1,6 +1,7 @@
-"CONVERTER.TAB.TITLE" = "Канвэртар";
+"CONVERTER.TAB.TITLE" = "Калькулятар";
 "CURRENCY.LIST.TAB.TITLE" = "Спіс валют";
 "FUEL.CALCULATOR.TAB.TITLE" = "Калькулятар паліва";
+"FUEL.LIST.TAB.TITLE" = "Спіс паліва";
 "SPLASH.MORNING.TITLE" = "Добрай раніцы";
 "SPLASH.DAY.TITLE" = "Добры дзень";
 "SPLASH.EVENING.TITLE" = "Добры вечар";
@@ -20,3 +21,6 @@
 "YESTERDAY.TITLE" = "Учора";
 "SELECTED.CURRENCY.BYN.ANALYTICS.ATTENTION" = "Вы выбралі валюту ў Беларускіх рублях (BYN). \n Для дадзенай валюты аналітыка не даступная";
 "ATTENTION" = "Увага";
+"WRITE.SUM.PLACEHOLDER" = "Увядзіце суму";
+"WRITE.LITER.PLACEHOLDER" = "Увядзіце колькасць (л.)";
+"HAS.NOT.SELECTED.CURRENCIES.TITLE" = "Дадаць паліва";

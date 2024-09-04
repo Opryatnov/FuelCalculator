@@ -1,6 +1,9 @@
-"CONVERTER.TAB.TITLE" = "Converter";
+// MARK: Tab bar titles
+
+"CONVERTER.TAB.TITLE" = "Calculator";
 "CURRENCY.LIST.TAB.TITLE" = "List of currencies";
 "FUEL.CALCULATOR.TAB.TITLE" = "Fuel Calculator";
+"FUEL.LIST.TAB.TITLE" = "List of fuel";
 "SPLASH.MORNING.TITLE" = "Good morning";
 "SPLASH.DAY.TITLE" = "Good afternoon";
 "SPLASH.EVENING.TITLE" = "Good evening";
@@ -20,3 +23,6 @@
 "YESTERDAY.TITLE" = "Yesterday";
 "SELECTED.CURRENCY.BYN.ANALYTICS.ATTENTION" = "You have selected a currency in Belarusian rubles (BYN).\nAnalytics are not available for this currency";
 "ATTENTION" = "Attention";
+"WRITE.SUM.PLACEHOLDER" = "Enter amount";
+"WRITE.LITER.PLACEHOLDER" = "Enter quantity (l)";
+"HAS.NOT.SELECTED.CURRENCIES.TITLE" = "Add Fuel";
