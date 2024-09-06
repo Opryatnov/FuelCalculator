@@ -32,6 +32,11 @@ final class MainTabBarViewController: UITabBarController {
                 viewcontroller: FuelListViewController(),
                 title: LS("FUEL.LIST.TAB.TITLE"),
                 image: UIImage(named: .fuelUnselected)
+            ),
+            setupVieController(
+                viewcontroller: SettingsViewController(),
+                title: "Settings",
+                image: UIImage(resource: .settingSelected)
             )
         ]
     }
@@ -90,12 +95,18 @@ final class MainTabBarViewController: UITabBarController {
         let currencyUnselectedImage: UIImage = UIImage(named: .fuelUnselected)!.withRenderingMode(UIImage.RenderingMode.alwaysOriginal)
         let currencySelectedImage: UIImage = UIImage(named: .fuelSelected)!.withRenderingMode(UIImage.RenderingMode.alwaysOriginal)
         
+        let settingsUnselectedImage: UIImage = UIImage(resource: .settingUnselected).withRenderingMode(UIImage.RenderingMode.alwaysOriginal)
+        let settingsSelectedImage: UIImage = UIImage(resource: .settingSelected).withRenderingMode(UIImage.RenderingMode.alwaysOriginal)
+        
         if let items = tabBar.items {
             items[0].image = homeUnselectedImage
             items[0].selectedImage = homeSelectedImage
             
             items[1].image = currencyUnselectedImage
             items[1].selectedImage = currencySelectedImage
+            
+            items[2].image = settingsUnselectedImage
+            items[2].selectedImage = settingsSelectedImage
         }
     }
 }

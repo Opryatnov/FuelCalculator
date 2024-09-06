@@ -220,7 +220,7 @@
 			</array>
 		</dict>
 		<key>NSUserTrackingUsageDescription</key>
-		<string>App would like to access IDFA for tracking purpose</string>
+		<string>Your data will be used to create a customized experience tailored to your interests</string>
 	</dict>
 	<key>NSAppTransportSecurity</key>
 	<dict>
