@@ -35,8 +35,8 @@ final class MainTabBarViewController: UITabBarController {
             ),
             setupVieController(
                 viewcontroller: SettingsViewController(),
-                title: "Settings",
-                image: UIImage(resource: .settingSelected)
+                title: LS("SETTINGS.TAB.TITLE"),
+                image: UIImage(resource: .settingsSelectedIcon)
             )
         ]
     }
@@ -95,8 +95,8 @@ final class MainTabBarViewController: UITabBarController {
         let currencyUnselectedImage: UIImage = UIImage(named: .fuelUnselected)!.withRenderingMode(UIImage.RenderingMode.alwaysOriginal)
         let currencySelectedImage: UIImage = UIImage(named: .fuelSelected)!.withRenderingMode(UIImage.RenderingMode.alwaysOriginal)
         
-        let settingsUnselectedImage: UIImage = UIImage(resource: .settingUnselected).withRenderingMode(UIImage.RenderingMode.alwaysOriginal)
-        let settingsSelectedImage: UIImage = UIImage(resource: .settingSelected).withRenderingMode(UIImage.RenderingMode.alwaysOriginal)
+        let settingsUnselectedImage: UIImage = UIImage(resource: .settingsUnselectedIcon).withRenderingMode(UIImage.RenderingMode.alwaysOriginal)
+        let settingsSelectedImage: UIImage = UIImage(resource: .settingsSelectedIcon).withRenderingMode(UIImage.RenderingMode.alwaysOriginal)
         
         if let items = tabBar.items {
             items[0].image = homeUnselectedImage

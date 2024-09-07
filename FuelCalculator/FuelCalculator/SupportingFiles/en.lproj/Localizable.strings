@@ -26,3 +26,8 @@
 "WRITE.SUM.PLACEHOLDER" = "Enter amount";
 "WRITE.LITER.PLACEHOLDER" = "Enter quantity (l)";
 "HAS.NOT.SELECTED.CURRENCIES.TITLE" = "Add Fuel";
+"SETTINGS.TAB.TITLE" = "Settings";
+"MENU.SETTINGS.TITLE" = "Settings";
+"MENU.RATE.APP.TITLE" = "Rate the app";
+"MENU.FEEDBACK.TITLE" = "Feedback";
+"MENU.SHARE.THE.APP" = "Share the app";

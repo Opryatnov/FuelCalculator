@@ -5,6 +5,7 @@
 //  Created by Opryatnov on 6.09.24.
 //
 
+import StoreKit
 import UIKit
 
 enum Settings: String, CaseIterable {
@@ -14,16 +15,20 @@ enum Settings: String, CaseIterable {
     case rateTheApp
     case thirdEmpty
     case feedBack
+    case fourthEmpty
+    case shareTheApp
     
     var title: String {
         switch self {
         case .settings:
-            "Settings"
+            LS("MENU.SETTINGS.TITLE")
         case .rateTheApp:
-            "Rate the app"
+            LS("MENU.RATE.APP.TITLE")
         case .feedBack:
-            "Feedback"
-        case .firstEmpty, .secondEmpty, .thirdEmpty:
+            LS("MENU.FEEDBACK.TITLE")
+        case .shareTheApp:
+            LS("MENU.SHARE.THE.APP")
+        case .firstEmpty, .secondEmpty, .thirdEmpty, .fourthEmpty:
             ""
         }
     }
@@ -31,12 +36,14 @@ enum Settings: String, CaseIterable {
     var icon: UIImage {
         switch self {
         case .settings:
-            UIImage(resource: .icAccountSettings).withRenderingMode(.alwaysTemplate)
+            UIImage(resource: .icAccountSettings)
         case .rateTheApp:
-            UIImage(resource: .rateUs).withRenderingMode(.alwaysTemplate)
+            UIImage(resource: .rateUs)
         case .feedBack:
-            UIImage(resource: .feedBackIcon).withRenderingMode(.alwaysTemplate)
-        case .firstEmpty, .secondEmpty, .thirdEmpty:
+            UIImage(resource: .feedBackIcon)
+        case .shareTheApp:
+            UIImage(resource: .iconsShare)
+        case .firstEmpty, .secondEmpty, .thirdEmpty, .fourthEmpty:
             UIImage(resource: .feedBackIcon)
         }
     }
@@ -74,6 +81,7 @@ final class SettingsViewController: UIViewController {
         setupTableView()
         addSubViews()
         setupConstraints()
+        promptForReview()
     }
     
     private func addSubViews() {
@@ -101,6 +109,54 @@ final class SettingsViewController: UIViewController {
         navigationController?.navigationBar.titleTextAttributes = textAttributes
         navigationController?.navigationBar.topItem?.title = LS("FUEL.LIST.TAB.TITLE")
     }
+    
+    private func openAppSettings() {
+        guard let appSettings = URL(string: UIApplication.openSettingsURLString) else {
+            return
+        }
+        if UIApplication.shared.canOpenURL(appSettings) {
+            UIApplication.shared.open(appSettings)
+        }
+    }
+    
+    private func openAppStoreReviewPage() {
+        guard let writeReviewURL = URL(string: "itms-apps://itunes.apple.com/app/id6636476826?action=write-review") else {
+            return
+        }
+        if UIApplication.shared.canOpenURL(writeReviewURL) {
+            UIApplication.shared.open(writeReviewURL, options: [:], completionHandler: nil)
+        }
+    }
+    
+    private func promptForReview() {
+        if #available(iOS 10.3, *) {
+            SKStoreReviewController.requestReview()
+        }
+    }
+    
+    private func shareIt() {
+        guard let urlToShare = URL(string: "https://testflight.apple.com/join/VUzxDD51") else { return }
+        let textToShare = LS("FUEL.CALCULATOR.TAB.TITLE")
+        
+        let itemsToShare = [textToShare, urlToShare] as [Any]
+        let activityViewController = UIActivityViewController(activityItems: itemsToShare, applicationActivities: nil)
+
+        activityViewController.excludedActivityTypes = [
+            UIActivity.ActivityType.postToFacebook,
+            UIActivity.ActivityType.postToTwitter
+        ]
+
+        self.present(activityViewController, animated: true, completion: nil)
+    }
+    
+    private func feedBack() {
+        let linkedInURLString = "https://www.linkedin.com/in/opryatnov-dmitry-21342bb4"
+        if let url = URL(string: linkedInURLString), UIApplication.shared.canOpenURL(url) {
+            UIApplication.shared.open(url, options: [:], completionHandler: nil)
+        } else {
+            print("Невозможно открыть ссылку на профиль LinkedIn")
+        }
+    }
 }
 
 // MARK: - UITableViewDelegate, - UITableViewDataSource
@@ -114,28 +170,31 @@ extension SettingsViewController: UITableViewDataSource, UITableViewDelegate {
         let cell = tableView.dequeueReusableCell(withIdentifier: SettingsTableViewCell.identifier, for: indexPath) as? SettingsTableViewCell
         let emptyCell = tableView.dequeueReusableCell(withIdentifier: EmptyTableViewCell.identifier, for: indexPath) as? EmptyTableViewCell
         cell?.selectionStyle = .none
+        emptyCell?.selectionStyle = .none
         let model = settings[indexPath.row]
         
         switch model {
-        case .feedBack, .rateTheApp, .settings:
+        case .feedBack, .rateTheApp, .settings, .shareTheApp:
             cell?.fill(settingsModel: settings[indexPath.row])
             return cell ?? UITableViewCell()
         default:
             return emptyCell ?? UITableViewCell()
         }
-        //        if indexPath.row == 0 || indexPath.row == 2 {
-        //            return emptyCell  ?? UITableViewCell()
-        //        } else {
-        //            if indexPath.row - 1 <= settings.count - 1 {
-//                cell?.fill(settingsModel: settings[indexPath.row - 1])
-//                return cell ?? UITableViewCell()
-//            } else {
-//                return UITableViewCell()
-//            }
-//        }
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
+        let model = settings[indexPath.row]
+        switch model {
+        case .feedBack:
+            feedBack()
+        case .rateTheApp:
+            openAppStoreReviewPage()
+        case .settings:
+            openAppSettings()
+        case .shareTheApp:
+            shareIt()
+        default:
+            break
+        }
     }
 }

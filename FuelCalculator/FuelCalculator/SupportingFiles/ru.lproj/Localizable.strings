@@ -24,3 +24,8 @@
 "WRITE.SUM.PLACEHOLDER" = "Введите сумму";
 "WRITE.LITER.PLACEHOLDER" = "Введите количество (л.)";
 "HAS.NOT.SELECTED.CURRENCIES.TITLE" = "Добавить топливо";
+"SETTINGS.TAB.TITLE" = "Настройки";
+"MENU.SETTINGS.TITLE" = "Настройки";
+"MENU.RATE.APP.TITLE" = "Оцените приложение";
+"MENU.FEEDBACK.TITLE" = "Обратная связь";
+"MENU.SHARE.THE.APP" = "Поделится приложением";
