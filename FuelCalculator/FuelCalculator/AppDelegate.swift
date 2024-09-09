@@ -15,12 +15,11 @@ import AdSupport
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
             self.requestTrackingAuthorization()
         }
         FirebaseApp.configure()
         GADMobileAds.sharedInstance().start(completionHandler: nil)
-//        GADMobileAds.sharedInstance().requestConfiguration.testDeviceIdentifiers = [ "cf56212da18835a92d4b385bf91d01fc" ]
         fetchCurrencies()
         return true
     }
