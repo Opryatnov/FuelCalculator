@@ -222,12 +222,18 @@
 		<key>NSUserTrackingUsageDescription</key>
 		<string>Your data will be used to create a customized experience tailored to your interests</string>
 	</dict>
-	<key>NSAppTransportSecurity</key>
-	<dict>
-		<key>NSAllowsArbitraryLoads</key>
-		<true/>
-	</dict>
 	<key>NSUserTrackingUsageDescription</key>
 	<string>App would like to access IDFA for tracking purpose</string>
+    <key>NSAppTransportSecurity</key>
+    <dict>
+        <key>NSExceptionDomains</key>
+        <dict>
+            <key>azs.a-100.by</key>
+            <dict>
+                <key>NSExceptionAllowsInsecureHTTPLoads</key>
+                <true/>
+            </dict>
+        </dict>
+    </dict>
 </dict>
 </plist>
