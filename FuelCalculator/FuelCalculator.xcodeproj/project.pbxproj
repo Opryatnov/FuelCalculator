@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		2C1BC95B2C63A12600419112 /* AppConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C1BC95A2C63A12600419112 /* AppConstants.swift */; };
+		2C40A26E2C99C7080049FBE8 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2C40A26C2C99C7080049FBE8 /* InfoPlist.strings */; };
 		2C48ED902C8AD65200DAC3A0 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C48ED8F2C8AD65200DAC3A0 /* SettingsViewController.swift */; };
 		2C48ED932C8AD71F00DAC3A0 /* SettingsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C48ED922C8AD71F00DAC3A0 /* SettingsTableViewCell.swift */; };
 		2C48ED952C8ADC0000DAC3A0 /* SettingsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2C48ED942C8ADC0000DAC3A0 /* SettingsViewController.xib */; };
@@ -82,6 +83,9 @@
 
 /* Begin PBXFileReference section */
 		2C1BC95A2C63A12600419112 /* AppConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppConstants.swift; sourceTree = "<group>"; };
+		2C40A26D2C99C7080049FBE8 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		2C40A26F2C99C7250049FBE8 /* be-BY */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "be-BY"; path = "be-BY.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
+		2C40A2702C99C7260049FBE8 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		2C48ED8F2C8AD65200DAC3A0 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		2C48ED922C8AD71F00DAC3A0 /* SettingsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTableViewCell.swift; sourceTree = "<group>"; };
 		2C48ED942C8ADC0000DAC3A0 /* SettingsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SettingsViewController.xib; path = FuelCalculator/UI/Settings/SettingsViewController.xib; sourceTree = SOURCE_ROOT; };
@@ -275,6 +279,7 @@
 				2CCA3E7D2C5BAAA90034812A /* Info.plist */,
 				2CA7BA9D2C6C8F4A00F6DD55 /* PrivacyInfo.xcprivacy */,
 				2CA7BAA62C6C978500F6DD55 /* GoogleService-Info.plist */,
+				2C40A26C2C99C7080049FBE8 /* InfoPlist.strings */,
 			);
 			path = FuelCalculator;
 			sourceTree = "<group>";
@@ -555,6 +560,7 @@
 				2CCA3F142C5BCD500034812A /* FuelCalculatorViewController.xib in Resources */,
 				2CCA3F1E2C5BCDA10034812A /* CurrencyListViewController.xib in Resources */,
 				2CACC4B92C5CE663008FC7BC /* FuelListViewController.xib in Resources */,
+				2C40A26E2C99C7080049FBE8 /* InfoPlist.strings in Resources */,
 				2CCA3EF02C5BC9FE0034812A /* allCurrenciesWithLanguages.json in Resources */,
 				2CCA3EF12C5BC9FE0034812A /* loading.json in Resources */,
 				2CACC4A72C5CC3D7008FC7BC /* Localizable.strings in Resources */,
@@ -633,6 +639,16 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
+		2C40A26C2C99C7080049FBE8 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				2C40A26D2C99C7080049FBE8 /* en */,
+				2C40A26F2C99C7250049FBE8 /* be-BY */,
+				2C40A2702C99C7260049FBE8 /* ru */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
 		2CACC4A62C5CC3D7008FC7BC /* Localizable.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -772,7 +788,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 8;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = "";
 				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = 6X5UG49YNH;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -810,7 +826,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 8;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = "";
 				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = 6X5UG49YNH;
 				GENERATE_INFOPLIST_FILE = YES;

@@ -221,7 +221,7 @@
         </dict>
     </dict>
     <key>NSUserTrackingUsageDescription</key>
-    <string>We will use your data to provide you with a more personalized app experience and make our app even more amazing.</string>
+    <string></string>
     <key>NSAppTransportSecurity</key>
     <dict>
         <key>NSExceptionDomains</key>
