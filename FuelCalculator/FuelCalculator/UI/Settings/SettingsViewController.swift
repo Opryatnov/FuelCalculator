@@ -81,7 +81,6 @@ final class SettingsViewController: UIViewController {
         setupTableView()
         addSubViews()
         setupConstraints()
-        promptForReview()
     }
     
     private func addSubViews() {
@@ -125,12 +124,6 @@ final class SettingsViewController: UIViewController {
         }
         if UIApplication.shared.canOpenURL(writeReviewURL) {
             UIApplication.shared.open(writeReviewURL, options: [:], completionHandler: nil)
-        }
-    }
-    
-    private func promptForReview() {
-        if #available(iOS 10.3, *) {
-            SKStoreReviewController.requestReview()
         }
     }
     
