@@ -31,3 +31,5 @@
 "MENU.RATE.APP.TITLE" = "Rate the app";
 "MENU.FEEDBACK.TITLE" = "Feedback";
 "MENU.SHARE.THE.APP" = "Share the app";
+"LOAD.DATA.ERROR.TIMEOUT" = "Loading data took too long.";
+"LOAD.DATA.ERROR" = "An error occurred while loading data";

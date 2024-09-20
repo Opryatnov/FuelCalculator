@@ -1,6 +1,8 @@
 import UIKit
 import Combine
 import GoogleMobileAds
+import WebKit
+import FirebaseAnalytics
 
 final class FuelCalculatorViewController: UIViewController {
     
@@ -11,6 +13,8 @@ final class FuelCalculatorViewController: UIViewController {
         static let tableViewAdditionalInset: CGFloat = 15
         static let tableViewContentInset: CGFloat = 20
         static let isHasNoughtHeight: CGFloat = 85
+        static let url = URL(string: AppConstants.fuelListRequest)
+        static let timeOutSeconds : Double = 30
         
         enum CurrencyCodeLabel {
             static let insets: CGFloat = 5
@@ -108,12 +112,29 @@ final class FuelCalculatorViewController: UIViewController {
         return textField
     }()
     
+    private let webView: WKWebView = {
+        let prefs = WKPreferences()
+        let pagePrefs = WKWebpagePreferences()
+        if #available(iOS 14.0, *) {
+            pagePrefs.allowsContentJavaScript = true
+        }
+        let config = WKWebViewConfiguration()
+        config.preferences = prefs
+        config.defaultWebpagePreferences = pagePrefs
+        let webView = WKWebView(frame: .zero, configuration: config)
+        webView.translatesAutoresizingMaskIntoConstraints = false
+        
+        return webView
+    }()
+    
     // MARK: Private properties
     
     private var fuelList: [Fuel]?
+    private let parser = HTMLParser()
     private let userDefaultsManager = UserDefaultsManager.shared
     private var cancellables = Set<AnyCancellable>()
-    var selectedCurrency: CurrencyData?
+    private var selectedCurrency: CurrencyData?
+    private var timeoutTimer: Timer?
     private var favoriteFuelCode: [String]? {
         userDefaultsManager.getFavoriteFuelCode()
     }
@@ -141,6 +162,7 @@ final class FuelCalculatorViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = UIColor(resource: .darkGray6)
+        fetchFuel()
         configureNavigationBar()
         addSubViews()
         setupConstraints()
@@ -161,6 +183,32 @@ final class FuelCalculatorViewController: UIViewController {
     }
     
     // MARK: Private methods
+    
+    private func fetchFuel() {
+        HUD.shared.show()
+        guard let url = Constants.url else { return }
+        webView.load(URLRequest(url: url))
+        webView.navigationDelegate = self
+        startTimeoutTimer()
+    }
+    
+    private func startTimeoutTimer() {
+        timeoutTimer = Timer.scheduledTimer(timeInterval: Constants.timeOutSeconds, target: self, selector: #selector(timeoutReached), userInfo: nil, repeats: false)
+    }
+    
+    @objc
+    private func timeoutReached() {
+        webView.stopLoading()
+        let errorString = LS("LOAD.DATA.ERROR.TIMEOUT")
+        showError(message: errorString)
+        sendLogEvents(actionEvent: "timeoutReached()", error: errorString)
+        HUD.shared.hide()
+        
+    }
+    
+    private func cancelTimeoutTimer() {
+        timeoutTimer?.invalidate()
+    }
     
     private func configureBannerView() {
         let viewWidth = view.frame.inset(by: view.safeAreaInsets).width
@@ -194,32 +242,32 @@ final class FuelCalculatorViewController: UIViewController {
     }
     
     private func updateEmptyView() {
-           if fuelList?.isEmpty == true || fuelList == nil {
-               if emptyButton == nil {
-                   let button = DashedBorderButton(type: .system)
-                   button.setTitle(LS("HAS.NOT.SELECTED.CURRENCIES.TITLE"), for: .normal)
-                   button.setTitleColor(.white, for: .normal)
-                   button.backgroundColor = UIColor(resource: .gray20)
-                   button.setImage(UIImage(resource: .addIcon).withRenderingMode(.alwaysOriginal), for: .normal) // Replace "icon" with your image name
-                   button.tintColor = .white
-                   button.imageEdgeInsets = UIEdgeInsets(top: 0, left: -10, bottom: 0, right: 0)
-                   button.titleEdgeInsets = UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 0)
-                   
-                   view.addSubview(button)
-                   button.snp.makeConstraints {
-                       $0.centerY.centerX.equalToSuperview()
-                       $0.width.equalTo(UIScreen.main.bounds.width - 50)
-                       $0.height.equalTo(56)
-                   }
-                   
-                   emptyButton = button
-                   emptyButton?.addTarget(self, action: #selector(selectFuel), for: .touchUpInside)
-               }
-           } else {
-               emptyButton?.removeFromSuperview()
-               emptyButton = nil
-           }
-       }
+        if fuelList?.isEmpty == true || fuelList == nil {
+            if emptyButton == nil {
+                let button = DashedBorderButton(type: .system)
+                button.setTitle(LS("HAS.NOT.SELECTED.CURRENCIES.TITLE"), for: .normal)
+                button.setTitleColor(.white, for: .normal)
+                button.backgroundColor = UIColor(resource: .gray20)
+                button.setImage(UIImage(resource: .addIcon).withRenderingMode(.alwaysOriginal), for: .normal) // Replace "icon" with your image name
+                button.tintColor = .white
+                button.imageEdgeInsets = UIEdgeInsets(top: 0, left: -10, bottom: 0, right: 0)
+                button.titleEdgeInsets = UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 0)
+                
+                view.addSubview(button)
+                button.snp.makeConstraints {
+                    $0.centerY.centerX.equalToSuperview()
+                    $0.width.equalTo(UIScreen.main.bounds.width - 50)
+                    $0.height.equalTo(56)
+                }
+                
+                emptyButton = button
+                emptyButton?.addTarget(self, action: #selector(selectFuel), for: .touchUpInside)
+            }
+        } else {
+            emptyButton?.removeFromSuperview()
+            emptyButton = nil
+        }
+    }
     
     private func setupSelectCurrencyAction() {
         let tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(selectCurrency))
@@ -263,6 +311,7 @@ final class FuelCalculatorViewController: UIViewController {
         currencyImageView.snp.makeConstraints {
             $0.leading.equalTo(selectCurrencyImageView.snp.trailing).inset(-Constants.CurrencyImageView.leftInset)
             $0.centerY.equalToSuperview()
+            $0.width.height.equalTo(32)
         }
         currencyCodeLabel.snp.makeConstraints {
             $0.leading.equalTo(currencyImageView.snp.trailing).inset(-Constants.CurrencyImageView.leftInset)
@@ -344,17 +393,17 @@ final class FuelCalculatorViewController: UIViewController {
         let request = GADRequest()
         GADInterstitialAd.load(withAdUnitID: AppConstants.googleVideoADKey, request: request) { (ad, error) in
             if let error = error {
-                print("Failed to load interstitial ad with error: \(error.localizedDescription)")
+                self.sendLogEvents(actionEvent: "setupScreenViewADS()", error: error.localizedDescription)
                 return
             }
             self.interstitial = ad
             self.interstitial?.fullScreenContentDelegate = self
         }
     }
-   
+    
     @objc
     private func selectCurrency() {
-        guard let interstitial = interstitial else {
+        guard let _ = interstitial else {
             showCurrencyScreen()
             return
         }
@@ -394,7 +443,7 @@ extension FuelCalculatorViewController: UITableViewDataSource, UITableViewDelega
         let cell = tableView.dequeueReusableCell(withIdentifier: FuelCalculatorCell.identifier, for: indexPath) as? FuelCalculatorCell
         cell?.selectionStyle = .none
         if let fuel = fuelList?[indexPath.row],
-        let selectedCurrency = NetworkService.shared.fetchedCurrencies?.first(where: { $0.currencyID == favoriteCurrencyCode }){
+           let selectedCurrency = NetworkService.shared.fetchedCurrencies?.first(where: { $0.currencyID == favoriteCurrencyCode }){
             cell?.fill(fuel: fuel, currency: selectedCurrency)
             cell?.delegate = self
         }
@@ -472,6 +521,13 @@ extension FuelCalculatorViewController: UITextFieldDelegate {
         }
         return false
     }
+    
+    private func sendLogEvents(actionEvent: String, error: String? = nil) {
+        Analytics.logEvent(actionEvent, parameters: [
+            "user_id": "",
+            "error": error
+        ])
+    }
 }
 
 extension FuelCalculatorViewController: FuelCalculatorCellDelegate {
@@ -525,4 +581,60 @@ extension FuelCalculatorViewController: CurrencyListViewControllerDelegate {
         }
         tableView.reloadData()
     }
+}
+
+extension FuelCalculatorViewController: WKNavigationDelegate {
+    
+    func webView(_ webView: WKWebView, didReceive challenge: URLAuthenticationChallenge, completionHandler: @escaping (URLSession.AuthChallengeDisposition, URLCredential?) -> Void) {
+        if let serverTrust = challenge.protectionSpace.serverTrust {
+            let credential = URLCredential(trust: serverTrust)
+            completionHandler(.useCredential, credential)
+        } else {
+            completionHandler(.cancelAuthenticationChallenge, nil)
+        }
+    }
+    
+    func webView(_ webView: WKWebView, didFail navigation: WKNavigation!, withError error: Error) {
+        let actionEvent = "func didFail WKNavigation with Error)"
+        sendLogEvents(actionEvent: actionEvent, error: error.localizedDescription)
+        cancelTimeoutTimer()
+        showError(message: LS("LOAD.DATA.ERROR"))
+    }
+    
+    func webView(_ webView: WKWebView, didFailProvisionalNavigation navigation: WKNavigation!, withError error: Error) {
+        let actionEvent = "func didFailProvisionalNavigation WKNavigation with Error)"
+        sendLogEvents(actionEvent: actionEvent, error: error.localizedDescription)
+    }
+    
+    func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
+        cancelTimeoutTimer()
+        webView.evaluateJavaScript("document.body.innerHTML") { [weak self] result, error in
+            guard let html = result as? String, error == nil else {
+                HUD.shared.hide()
+                return
+            }
+            
+            self?.parser.parse(html: html) { [weak self] fuelList in
+                do {
+                    let encoder = JSONEncoder()
+                    let data = try encoder.encode(fuelList)
+                    UserDefaults.standard.set(data, forKey: "fuelList")
+                    self?.fetchFuelFromDefaults()
+                    HUD.shared.hide()
+                } catch {
+                    HUD.shared.hide()
+                    self?.fetchFuelFromDefaults()
+                    self?.showError(message: error.localizedDescription)
+                    self?.sendLogEvents(actionEvent: "parser.parse(html: html)", error: error.localizedDescription)
+                }
+            } errorCompletion: { [weak self] error in
+                HUD.shared.hide()
+                self?.fetchFuelFromDefaults()
+                self?.showError(message: error?.localizedDescription)
+                self?.sendLogEvents(actionEvent: "webView: WKWebView, didFinish navigation: WKNavigation)", error: error?.localizedDescription)
+            }
+        }
+    }
+    
+    func webView(_ webView: WKWebView, didCommit navigation: WKNavigation!) {}
 }
