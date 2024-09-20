@@ -1,15 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
-<dict>
-	<key>GADApplicationIdentifier</key>
-	<string>ca-app-pub-6665857691249161~2740641269</string>
-	<key>NSAppTransportSecurity</key>
-	<dict>
-		<key>NSExceptionDomains</key>
-		<dict>
-			<key>azs.a-100.by</key>
-			<dict>
+    <dict>
+        <key>GADApplicationIdentifier</key>
+        <string>ca-app-pub-6665857691249161~2740641269</string>
+        <key>NSUserTrackingUsageDescription</key>
+        <string></string>
+        <key>NSAppTransportSecurity</key>
+        <dict>
+            <key>NSExceptionDomains</key>
+            <dict>
+                <key>azs.a-100.by</key>
+                <dict>
 				<key>NSExceptionAllowsInsecureHTTPLoads</key>
 				<true/>
 			</dict>
