@@ -5,7 +5,7 @@
         <key>GADApplicationIdentifier</key>
         <string>ca-app-pub-6665857691249161~2740641269</string>
         <key>NSUserTrackingUsageDescription</key>
-        <string></string>
+        <string>The fuel calculator requires your advertising ID to provide you with personalized advertising tailored to you.</string>
         <key>NSAppTransportSecurity</key>
         <dict>
             <key>NSExceptionDomains</key>
