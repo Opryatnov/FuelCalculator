@@ -12,7 +12,6 @@ enum Settings: String, CaseIterable {
     case firstEmpty
     case settings
     case secondEmpty
-    case rateTheApp
     case thirdEmpty
     case feedBack
     case fourthEmpty
@@ -22,8 +21,6 @@ enum Settings: String, CaseIterable {
         switch self {
         case .settings:
             LS("MENU.SETTINGS.TITLE")
-        case .rateTheApp:
-            LS("MENU.RATE.APP.TITLE")
         case .feedBack:
             LS("MENU.FEEDBACK.TITLE")
         case .shareTheApp:
@@ -37,8 +34,6 @@ enum Settings: String, CaseIterable {
         switch self {
         case .settings:
             UIImage(resource: .icAccountSettings)
-        case .rateTheApp:
-            UIImage(resource: .rateUs)
         case .feedBack:
             UIImage(resource: .feedBackIcon)
         case .shareTheApp:
@@ -167,7 +162,7 @@ extension SettingsViewController: UITableViewDataSource, UITableViewDelegate {
         let model = settings[indexPath.row]
         
         switch model {
-        case .feedBack, .rateTheApp, .settings, .shareTheApp:
+        case .feedBack, .settings, .shareTheApp:
             cell?.fill(settingsModel: settings[indexPath.row])
             return cell ?? UITableViewCell()
         default:
@@ -180,8 +175,6 @@ extension SettingsViewController: UITableViewDataSource, UITableViewDelegate {
         switch model {
         case .feedBack:
             feedBack()
-        case .rateTheApp:
-            openAppStoreReviewPage()
         case .settings:
             openAppSettings()
         case .shareTheApp:
