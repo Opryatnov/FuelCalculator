@@ -162,7 +162,6 @@ final class FuelCalculatorViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = UIColor(resource: .darkGray6)
-        fetchFuel()
         configureNavigationBar()
         addSubViews()
         setupConstraints()
@@ -171,6 +170,7 @@ final class FuelCalculatorViewController: UIViewController {
         setupSelectCurrencyAction()
         updateEmptyView()
         bind()
+        fetchFuel()
         configureBannerView()
         setupScreenViewADS()
     }
@@ -393,8 +393,7 @@ final class FuelCalculatorViewController: UIViewController {
         let request = GADRequest()
         GADInterstitialAd.load(withAdUnitID: AppConstants.googleVideoADKey, request: request) { (ad, error) in
             if let error = error {
-                self.sendLogEvents(actionEvent: "setupScreenViewADS()", error: error.localizedDescription)
-                return
+                self.sendLogEvents(actionEvent: "setupScreenViewADS", error: error.localizedDescription)
             }
             self.interstitial = ad
             self.interstitial?.fullScreenContentDelegate = self
