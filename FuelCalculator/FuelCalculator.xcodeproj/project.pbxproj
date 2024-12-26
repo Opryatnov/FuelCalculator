@@ -7,13 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2C0E55722D1D474200AA9409 /* HelloMototAppCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C0E55712D1D474200AA9409 /* HelloMototAppCell.swift */; };
 		2C1BC95B2C63A12600419112 /* AppConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C1BC95A2C63A12600419112 /* AppConstants.swift */; };
 		2C40A26E2C99C7080049FBE8 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2C40A26C2C99C7080049FBE8 /* InfoPlist.strings */; };
 		2C48ED902C8AD65200DAC3A0 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C48ED8F2C8AD65200DAC3A0 /* SettingsViewController.swift */; };
 		2C48ED932C8AD71F00DAC3A0 /* SettingsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C48ED922C8AD71F00DAC3A0 /* SettingsTableViewCell.swift */; };
 		2C48ED952C8ADC0000DAC3A0 /* SettingsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2C48ED942C8ADC0000DAC3A0 /* SettingsViewController.xib */; };
 		2C48ED9B2C8B0A1E00DAC3A0 /* EmptyCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C48ED9A2C8B0A1E00DAC3A0 /* EmptyCell.swift */; };
-		2CA7BAA52C6C938500F6DD55 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 2CA7BAA42C6C938500F6DD55 /* FirebaseAnalytics */; };
 		2CA7BAA72C6C978500F6DD55 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2CA7BAA62C6C978500F6DD55 /* GoogleService-Info.plist */; };
 		2CACC4A72C5CC3D7008FC7BC /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2CACC4A62C5CC3D7008FC7BC /* Localizable.strings */; };
 		2CACC4AC2C5CD154008FC7BC /* MainTabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CACC4AB2C5CD154008FC7BC /* MainTabBarViewController.swift */; };
@@ -77,11 +77,12 @@
 		2CCA3F1C2C5BCDA10034812A /* CurrencyListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CCA3F192C5BCDA10034812A /* CurrencyListViewController.swift */; };
 		2CCA3F1E2C5BCDA10034812A /* CurrencyListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2CCA3F1B2C5BCDA10034812A /* CurrencyListViewController.xib */; };
 		2CCA3F212C5BCDB70034812A /* CurrencyTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CCA3F202C5BCDB70034812A /* CurrencyTableViewCell.swift */; };
-		2CD6642A2C6CE8F300CE9EF9 /* GoogleMobileAds in Frameworks */ = {isa = PBXBuildFile; productRef = 2CD664292C6CE8F300CE9EF9 /* GoogleMobileAds */; };
 		2CD6642C2C6CEA0700CE9EF9 /* DashedBorderButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CD6642B2C6CEA0700CE9EF9 /* DashedBorderButton.swift */; };
+		65D9FD94B518AE2F92C98E49 /* Pods_FuelCalculator.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 582F1D88A4663B3FFFC3D353 /* Pods_FuelCalculator.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2C0E55712D1D474200AA9409 /* HelloMototAppCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelloMototAppCell.swift; sourceTree = "<group>"; };
 		2C1BC95A2C63A12600419112 /* AppConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppConstants.swift; sourceTree = "<group>"; };
 		2C40A26D2C99C7080049FBE8 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		2C40A26F2C99C7250049FBE8 /* be-BY */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "be-BY"; path = "be-BY.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
@@ -155,6 +156,9 @@
 		2CCA3F1B2C5BCDA10034812A /* CurrencyListViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CurrencyListViewController.xib; sourceTree = "<group>"; };
 		2CCA3F202C5BCDB70034812A /* CurrencyTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CurrencyTableViewCell.swift; sourceTree = "<group>"; };
 		2CD6642B2C6CEA0700CE9EF9 /* DashedBorderButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashedBorderButton.swift; sourceTree = "<group>"; };
+		582F1D88A4663B3FFFC3D353 /* Pods_FuelCalculator.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FuelCalculator.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B63D25713438C4459DCDFF21 /* Pods-FuelCalculator.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FuelCalculator.release.xcconfig"; path = "Target Support Files/Pods-FuelCalculator/Pods-FuelCalculator.release.xcconfig"; sourceTree = "<group>"; };
+		C6F07F4BF21E7B7A71D95029 /* Pods-FuelCalculator.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FuelCalculator.debug.xcconfig"; path = "Target Support Files/Pods-FuelCalculator/Pods-FuelCalculator.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -162,12 +166,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2CD6642A2C6CE8F300CE9EF9 /* GoogleMobileAds in Frameworks */,
 				2CCA3E942C5BC3720034812A /* SnapKit in Frameworks */,
 				2CCA3E9D2C5BC5FA0034812A /* Alamofire in Frameworks */,
 				2CCA3E972C5BC3850034812A /* SwiftSoup in Frameworks */,
-				2CA7BAA52C6C938500F6DD55 /* FirebaseAnalytics in Frameworks */,
 				2CCA3E9A2C5BC3F70034812A /* Lottie in Frameworks */,
+				65D9FD94B518AE2F92C98E49 /* Pods_FuelCalculator.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -197,6 +200,7 @@
 				2C48ED922C8AD71F00DAC3A0 /* SettingsTableViewCell.swift */,
 				2C48ED942C8ADC0000DAC3A0 /* SettingsViewController.xib */,
 				2C48ED9A2C8B0A1E00DAC3A0 /* EmptyCell.swift */,
+				2C0E55712D1D474200AA9409 /* HelloMototAppCell.swift */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -204,6 +208,7 @@
 		2CA7BAA32C6C938500F6DD55 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				582F1D88A4663B3FFFC3D353 /* Pods_FuelCalculator.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -249,6 +254,7 @@
 				2CCA3E6E2C5BAAA80034812A /* FuelCalculator */,
 				2CCA3E6D2C5BAAA80034812A /* Products */,
 				2CA7BAA32C6C938500F6DD55 /* Frameworks */,
+				94B8827EAA685381682AE5A7 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -481,6 +487,15 @@
 			path = Cell;
 			sourceTree = "<group>";
 		};
+		94B8827EAA685381682AE5A7 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				C6F07F4BF21E7B7A71D95029 /* Pods-FuelCalculator.debug.xcconfig */,
+				B63D25713438C4459DCDFF21 /* Pods-FuelCalculator.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -488,9 +503,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 2CCA3E802C5BAAA90034812A /* Build configuration list for PBXNativeTarget "FuelCalculator" */;
 			buildPhases = (
+				207050E8CB093AD6E725FB35 /* [CP] Check Pods Manifest.lock */,
 				2CCA3E682C5BAAA80034812A /* Sources */,
 				2CCA3E692C5BAAA80034812A /* Frameworks */,
 				2CCA3E6A2C5BAAA80034812A /* Resources */,
+				3FFF20A698A77706EBC18B13 /* [CP] Embed Pods Frameworks */,
+				DDA5AFF106ECBB9AC775FC4B /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -502,8 +520,6 @@
 				2CCA3E962C5BC3850034812A /* SwiftSoup */,
 				2CCA3E992C5BC3F70034812A /* Lottie */,
 				2CCA3E9C2C5BC5FA0034812A /* Alamofire */,
-				2CA7BAA42C6C938500F6DD55 /* FirebaseAnalytics */,
-				2CD664292C6CE8F300CE9EF9 /* GoogleMobileAds */,
 			);
 			productName = FuelCalculator;
 			productReference = 2CCA3E6C2C5BAAA80034812A /* FuelCalculator.app */;
@@ -540,8 +556,6 @@
 				2CCA3E952C5BC3850034812A /* XCRemoteSwiftPackageReference "SwiftSoup" */,
 				2CCA3E982C5BC3F70034812A /* XCRemoteSwiftPackageReference "lottie-spm" */,
 				2CCA3E9B2C5BC5FA0034812A /* XCRemoteSwiftPackageReference "Alamofire" */,
-				2CA7BAA02C6C927700F6DD55 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
-				2CD664282C6CE8F300CE9EF9 /* XCRemoteSwiftPackageReference "swift-package-manager-google-mobile-ads" */,
 			);
 			productRefGroup = 2CCA3E6D2C5BAAA80034812A /* Products */;
 			projectDirPath = "";
@@ -574,6 +588,65 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		207050E8CB093AD6E725FB35 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-FuelCalculator-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		3FFF20A698A77706EBC18B13 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-FuelCalculator/Pods-FuelCalculator-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-FuelCalculator/Pods-FuelCalculator-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-FuelCalculator/Pods-FuelCalculator-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		DDA5AFF106ECBB9AC775FC4B /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-FuelCalculator/Pods-FuelCalculator-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-FuelCalculator/Pods-FuelCalculator-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-FuelCalculator/Pods-FuelCalculator-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		2CCA3E682C5BAAA80034812A /* Sources */ = {
@@ -632,6 +705,7 @@
 				2C48ED9B2C8B0A1E00DAC3A0 /* EmptyCell.swift in Sources */,
 				2CCA3E702C5BAAA80034812A /* AppDelegate.swift in Sources */,
 				2CCA3E722C5BAAA80034812A /* SceneDelegate.swift in Sources */,
+				2C0E55722D1D474200AA9409 /* HelloMototAppCell.swift in Sources */,
 				2CCA3EC52C5BC8F10034812A /* Decimal+.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -699,7 +773,7 @@
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
-				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu17;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -762,7 +836,7 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu17;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -783,12 +857,13 @@
 		};
 		2CCA3E812C5BAAA90034812A /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = C6F07F4BF21E7B7A71D95029 /* Pods-FuelCalculator.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 0;
 				DEVELOPMENT_TEAM = "";
 				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = 6X5UG49YNH;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -804,8 +879,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.2;
-				OTHER_LDFLAGS = "-ObjC";
+				MARKETING_VERSION = 1.2.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.FuelCalculatorBY;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -822,12 +896,13 @@
 		};
 		2CCA3E822C5BAAA90034812A /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = B63D25713438C4459DCDFF21 /* Pods-FuelCalculator.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 0;
 				DEVELOPMENT_TEAM = "";
 				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = 6X5UG49YNH;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -843,8 +918,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.2;
-				OTHER_LDFLAGS = "-ObjC";
+				MARKETING_VERSION = 1.2.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.FuelCalculatorBY;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -883,14 +957,6 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		2CA7BAA02C6C927700F6DD55 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 11.0.0;
-			};
-		};
 		2CCA3E922C5BC3720034812A /* XCRemoteSwiftPackageReference "SnapKit" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/SnapKit/SnapKit.git";
@@ -923,22 +989,9 @@
 				minimumVersion = 5.9.1;
 			};
 		};
-		2CD664282C6CE8F300CE9EF9 /* XCRemoteSwiftPackageReference "swift-package-manager-google-mobile-ads" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/googleads/swift-package-manager-google-mobile-ads.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 11.8.0;
-			};
-		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		2CA7BAA42C6C938500F6DD55 /* FirebaseAnalytics */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 2CA7BAA02C6C927700F6DD55 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
-			productName = FirebaseAnalytics;
-		};
 		2CCA3E932C5BC3720034812A /* SnapKit */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 2CCA3E922C5BC3720034812A /* XCRemoteSwiftPackageReference "SnapKit" */;
@@ -958,11 +1011,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 2CCA3E9B2C5BC5FA0034812A /* XCRemoteSwiftPackageReference "Alamofire" */;
 			productName = Alamofire;
-		};
-		2CD664292C6CE8F300CE9EF9 /* GoogleMobileAds */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 2CD664282C6CE8F300CE9EF9 /* XCRemoteSwiftPackageReference "swift-package-manager-google-mobile-ads" */;
-			productName = GoogleMobileAds;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

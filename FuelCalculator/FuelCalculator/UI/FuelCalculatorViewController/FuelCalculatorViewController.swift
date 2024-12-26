@@ -1,8 +1,8 @@
 import UIKit
 import Combine
-import GoogleMobileAds
-import WebKit
+@preconcurrency import WebKit
 import FirebaseAnalytics
+import Appodeal
 
 final class FuelCalculatorViewController: UIViewController {
     
@@ -43,7 +43,6 @@ final class FuelCalculatorViewController: UIViewController {
     
     // MARK: UI
     
-    private var bannerView: GADBannerView!
     private var emptyButton: DashedBorderButton?
     
     private let tableView: UITableView = {
@@ -154,9 +153,7 @@ final class FuelCalculatorViewController: UIViewController {
         Constants.TextField.leftInset -
         Constants.TextField.rightInset
     }
-    
-    private var interstitial: GADInterstitialAd?
-    
+        
     // MARK: Lifecycle
     
     override func viewDidLoad() {
@@ -171,12 +168,11 @@ final class FuelCalculatorViewController: UIViewController {
         updateEmptyView()
         bind()
         fetchFuel()
-        configureBannerView()
-        setupScreenViewADS()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        Appodeal.showAd(.bannerBottom, rootViewController: self)
         if self.favoriteCurrencyCode == nil {
             self.userDefaultsManager.setFavoriteCurrencyCode(0)
         }
@@ -208,22 +204,6 @@ final class FuelCalculatorViewController: UIViewController {
     
     private func cancelTimeoutTimer() {
         timeoutTimer?.invalidate()
-    }
-    
-    private func configureBannerView() {
-        let viewWidth = view.frame.inset(by: view.safeAreaInsets).width
-        let adaptiveSize = GADCurrentOrientationAnchoredAdaptiveBannerAdSizeWithWidth(viewWidth)
-        bannerView = GADBannerView(adSize: adaptiveSize)
-        view.addSubview(bannerView)
-        
-        let topInset = UIDevice.hasNotch ? Constants.isHasNoughtHeight + 15 : (tabBarController?.tabBar.frame.size.height ?? 50) + Constants.tableViewAdditionalInset
-        bannerView.snp.makeConstraints {
-            $0.bottom.equalToSuperview().inset(topInset)
-        }
-        
-        bannerView.adUnitID = AppConstants.googleBannerADKey
-        bannerView.rootViewController = self
-        bannerView.load(GADRequest())
     }
     
     private func bind() {
@@ -389,30 +369,17 @@ final class FuelCalculatorViewController: UIViewController {
         showAlert(message: message, buttons: closeAction, viewController: self)
     }
     
-    private func setupScreenViewADS() {
-        let request = GADRequest()
-        GADInterstitialAd.load(withAdUnitID: AppConstants.googleVideoADKey, request: request) { (ad, error) in
-            if let error = error {
-                self.sendLogEvents(actionEvent: "setupScreenViewADS", error: error.localizedDescription)
-            }
-            self.interstitial = ad
-            self.interstitial?.fullScreenContentDelegate = self
-        }
-    }
-    
     @objc
     private func selectCurrency() {
-        guard let _ = interstitial else {
-            showCurrencyScreen()
-            return
-        }
-        
         showInterstitial()
     }
     
     func showInterstitial() {
-        if let interstitial = interstitial {
-            interstitial.present(fromRootViewController: self)
+        if Appodeal.canShow(.interstitial, forPlacement: "default") {
+            Appodeal.setInterstitialDelegate(self)
+            Appodeal.showAd(.interstitial, forPlacement: "default", rootViewController: self)
+        } else {
+            showCurrencyScreen()
         }
     }
     
@@ -550,19 +517,40 @@ extension FuelCalculatorViewController: FuelCalculatorCellDelegate {
     }
 }
 
-extension FuelCalculatorViewController: GADFullScreenContentDelegate {
-    func ad(_ ad: GADFullScreenPresentingAd, didFailToPresentFullScreenContentWithError error: Error) {
+extension FuelCalculatorViewController: AppodealInterstitialDelegate {
+    // Method called when precache (cheap and fast load) or usual interstitial view did load
+    //
+    // - Warning: If you want show only expensive ad, ignore this callback call with precache equal to YES
+    // - Parameter precache: If precache is YES it's mean that precache loaded
+    func interstitialDidLoadAdIsPrecache(_ precache: Bool) {
+    }
+
+    // Method called if interstitial mediation failed
+    func interstitialDidFailToLoadAd() {
         showCurrencyScreen()
     }
     
-    func adWillPresentFullScreenContent(_ ad: GADFullScreenPresentingAd) {
+    // Method called if interstitial mediation was success, but ready ad network can't show ad or
+    // ad presentation was to frequently according your placement settings
+    func interstitialDidFailToPresent() {
+        showCurrencyScreen()
     }
     
-    func adDidDismissFullScreenContent(_ ad: GADFullScreenPresentingAd) {
-        setupScreenViewADS()
+    // Method called when interstitial will display on screen
+    func interstitialWillPresent() {
+    }
+
+    // Method called after interstitial leave screeen
+    func interstitialDidDismiss() {
+        showCurrencyScreen()
+    }
+
+    // Method called when user tap on interstitial
+    func interstitialDidClick() {
     }
     
-    func adWillDismissFullScreenContent(_ ad: GADFullScreenPresentingAd) {
+    // Method called when interstitial did expire and could not be shown
+    func interstitialDidExpired(){
         showCurrencyScreen()
     }
 }

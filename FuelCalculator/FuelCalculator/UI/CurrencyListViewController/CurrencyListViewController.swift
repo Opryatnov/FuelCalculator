@@ -1,12 +1,6 @@
-//
-//  CurrencyListViewController.swift
-//  CurrencyConverter
-//
-//  Created by Dmitriy Opryatnov on 16.03.23.
-//
-
 import UIKit
 import Combine
+import Appodeal
 
 protocol CurrencyListViewControllerDelegate: AnyObject {
     func didUpdate()
@@ -70,6 +64,11 @@ final class CurrencyListViewController: UIViewController {
         cancellables.removeAll()
         reactToFetchCurrencies()
         fetchCurrencies()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        Appodeal.showAd(.bannerBottom, rootViewController: self)
     }
     
     // MARK: Private methods
