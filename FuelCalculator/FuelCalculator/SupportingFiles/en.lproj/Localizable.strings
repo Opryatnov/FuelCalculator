@@ -1,0 +1,37 @@
+// MARK: Tab bar titles
+
+"CONVERTER.TAB.TITLE" = "Calculator";
+"CURRENCY.LIST.TAB.TITLE" = "List of currencies";
+"FUEL.CALCULATOR.TAB.TITLE" = "Fuel Calculator";
+"FUEL.LIST.TAB.TITLE" = "List of fuel";
+"SPLASH.MORNING.TITLE" = "Good morning";
+"SPLASH.DAY.TITLE" = "Good afternoon";
+"SPLASH.EVENING.TITLE" = "Good evening";
+"SPLASH.NIGHT.TITLE" = "Good night";
+"ALERT.CLOSE.BUTTON" = "Got it";
+"CURRENCIES.TAB.TITLE" = "Analytics";
+"SOMETHING.WENT.WRONG.TITLE" = "Something went wrong";
+"SORRY.SOME.MISTAKE" = "Sorry, there was an error. Try again later.";
+"WEEK" = "Week";
+"MONTH" = "Month";
+"THREE.MONTHS" = "3/M";
+"SIX.MONTHS" = "6/M";
+"YEAR" = "Year";
+"DATE.TITLE" = "Date: ";
+"RATE.TITLE" = "Official Rate: ";
+"TODAY.TITLE" = "Today";
+"YESTERDAY.TITLE" = "Yesterday";
+"SELECTED.CURRENCY.BYN.ANALYTICS.ATTENTION" = "You have selected a currency in Belarusian rubles (BYN).\nAnalytics are not available for this currency";
+"ATTENTION" = "Attention";
+"WRITE.SUM.PLACEHOLDER" = "Enter amount";
+"WRITE.LITER.PLACEHOLDER" = "Enter quantity (l)";
+"HAS.NOT.SELECTED.CURRENCIES.TITLE" = "Add Fuel";
+"SETTINGS.TAB.TITLE" = "Settings";
+"MENU.SETTINGS.TITLE" = "Settings";
+"MENU.RATE.APP.TITLE" = "Rate the app";
+"MENU.FEEDBACK.TITLE" = "Feedback";
+"MENU.SHARE.THE.APP" = "Share the app";
+"LOAD.DATA.ERROR.TIMEOUT" = "Loading data took too long.";
+"LOAD.DATA.ERROR" = "An error occurred while loading data";
+"HELLO.MOTO.DESCRIPTION" = "Try our Hello Moto app — the best app for motorcycle enthusiasts";
+"DOWNLOAD.NOW.TITLE" = "Download Now";

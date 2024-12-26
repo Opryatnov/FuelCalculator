@@ -1,19 +1,23 @@
-//
-//  AppDelegate.swift
-//  FuelCalculator
-//
-//  Created by Dmitriy Opryatnov on 1.08.24.
-//
-
 import UIKit
+import FirebaseCore
+import AppTrackingTransparency
+import AdSupport
+import Appodeal
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
-
-
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
+        DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+            self.requestTrackingAuthorization()
+        }
+        FirebaseApp.configure()
+        Appodeal.setInitializationDelegate(self)
+        Appodeal.initialize(
+            withApiKey: "d724c30afa39cc0753abd83b7c0d78639642519f9f53142d",
+            types: [.interstitial, .banner]
+        )
+        fetchCurrencies()
         return true
     }
 
@@ -31,6 +35,41 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Use this method to release any resources that were specific to the discarded scenes, as they will not return.
     }
 
-
+    private func fetchCurrencies() {
+        NetworkService.shared.getCurrencyList(networkProvider: NetworkRequestProviderImpl()) { result in
+            switch result {
+            case .success:
+                break
+            case .failure:
+                break
+            }
+        }
+    }
+    
+    @objc private func requestTrackingAuthorization() {
+        if #available(iOS 14, *) {
+            ATTrackingManager.requestTrackingAuthorization { status in
+                switch status {
+                case .authorized:
+                    print("Tracking authorization status: Authorized")
+                case .denied:
+                    print("Tracking authorization status: Denied")
+                case .restricted:
+                    print("Tracking authorization status: Restricted")
+                case .notDetermined:
+                    print("Tracking authorization status: Not Determined")
+                @unknown default:
+                    print("Tracking authorization status: Unknown")
+                }
+            }
+        } else {
+            print("Tracking authorization is not available for iOS versions below 14.0")
+        }
+    }
 }
 
+extension AppDelegate: AppodealInitializationDelegate {
+    func appodealSDKDidInitialize() {
+        // Appodeal SDK did complete initialization
+    }
+}
