@@ -16,6 +16,8 @@ enum Settings: String, CaseIterable {
     case feedBack
     case fourthEmpty
     case shareTheApp
+    case fifthEmpty
+    case otherApp
     
     var title: String {
         switch self {
@@ -25,7 +27,7 @@ enum Settings: String, CaseIterable {
             LS("MENU.FEEDBACK.TITLE")
         case .shareTheApp:
             LS("MENU.SHARE.THE.APP")
-        case .firstEmpty, .secondEmpty, .thirdEmpty, .fourthEmpty:
+        case .firstEmpty, .secondEmpty, .thirdEmpty, .fourthEmpty, .fifthEmpty, .otherApp:
             ""
         }
     }
@@ -38,7 +40,7 @@ enum Settings: String, CaseIterable {
             UIImage(resource: .feedBackIcon)
         case .shareTheApp:
             UIImage(resource: .iconsShare)
-        case .firstEmpty, .secondEmpty, .thirdEmpty, .fourthEmpty:
+        case .firstEmpty, .secondEmpty, .thirdEmpty, .fourthEmpty, .fifthEmpty, .otherApp:
             UIImage(resource: .feedBackIcon)
         }
     }
@@ -94,8 +96,11 @@ final class SettingsViewController: UIViewController {
         tableView.contentInset.bottom = Constants.tableViewContentInset
         tableView.delegate = self
         tableView.dataSource = self
+        tableView.rowHeight = UITableView.automaticDimension
+        tableView.estimatedRowHeight = 44
         tableView.register(SettingsTableViewCell.self, forCellReuseIdentifier: SettingsTableViewCell.identifier)
         tableView.register(EmptyTableViewCell.self, forCellReuseIdentifier: EmptyTableViewCell.identifier)
+        tableView.register(HelloMototAppCell.self, forCellReuseIdentifier: HelloMototAppCell.identifier)
     }
     
     private func configureNavigationBar() {
@@ -145,6 +150,15 @@ final class SettingsViewController: UIViewController {
             print("Невозможно открыть ссылку на профиль LinkedIn")
         }
     }
+    
+    private func openOtherApp() {
+        guard let helloMotoAppstoreURL = URL(string: "https://apps.apple.com/by/app/hello-moto/id6738983135") else {
+            return
+        }
+        if UIApplication.shared.canOpenURL(helloMotoAppstoreURL) {
+            UIApplication.shared.open(helloMotoAppstoreURL, options: [:], completionHandler: nil)
+        }
+    }
 }
 
 // MARK: - UITableViewDelegate, - UITableViewDataSource
@@ -157,14 +171,18 @@ extension SettingsViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: SettingsTableViewCell.identifier, for: indexPath) as? SettingsTableViewCell
         let emptyCell = tableView.dequeueReusableCell(withIdentifier: EmptyTableViewCell.identifier, for: indexPath) as? EmptyTableViewCell
+        let downloadHelloMototCell = tableView.dequeueReusableCell(withIdentifier: HelloMototAppCell.identifier, for: indexPath) as? HelloMototAppCell
         cell?.selectionStyle = .none
         emptyCell?.selectionStyle = .none
+        downloadHelloMototCell?.selectionStyle = .none
         let model = settings[indexPath.row]
         
         switch model {
         case .feedBack, .settings, .shareTheApp:
             cell?.fill(settingsModel: settings[indexPath.row])
             return cell ?? UITableViewCell()
+        case .otherApp:
+            return downloadHelloMototCell ?? UITableViewCell()
         default:
             return emptyCell ?? UITableViewCell()
         }
@@ -179,8 +197,14 @@ extension SettingsViewController: UITableViewDataSource, UITableViewDelegate {
             openAppSettings()
         case .shareTheApp:
             shareIt()
+        case .otherApp:
+            openOtherApp()
         default:
             break
         }
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return UITableView.automaticDimension
     }
 }

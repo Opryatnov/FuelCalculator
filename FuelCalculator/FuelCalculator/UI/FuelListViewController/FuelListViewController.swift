@@ -1,13 +1,6 @@
-//
-//  FuelListViewController.swift
-//  FuelCalculator
-//
-//  Created by Dmitriy Opryatnov on 2.08.24.
-//
-
 import UIKit
-import WebKit
-import GoogleMobileAds
+@preconcurrency import WebKit
+import Appodeal
 
 final class FuelListViewController: UIViewController {
     
@@ -22,9 +15,7 @@ final class FuelListViewController: UIViewController {
     }
     
     // MARK: UI
-    
-    private var bannerView: GADBannerView!
-    
+        
     private let tableView: UITableView = {
         let tableView = UITableView(frame: .zero, style: .grouped)
         tableView.backgroundColor = UIColor(resource: .darkGray6)
@@ -73,30 +64,14 @@ final class FuelListViewController: UIViewController {
         setupConstraints()
         setupTableView()
         fetchFuel()
-        configureBannerView()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        Appodeal.showAd(.bannerBottom, rootViewController: self)
     }
     
     // MARK: Private methods
-    
-    private func configureBannerView() {
-        let viewWidth = view.frame.inset(by: view.safeAreaInsets).width
-        let adaptiveSize = GADCurrentOrientationAnchoredAdaptiveBannerAdSizeWithWidth(viewWidth)
-        bannerView = GADBannerView(adSize: adaptiveSize)
-        view.addSubview(bannerView)
-        
-        let topInset = UIDevice.hasNotch ? Constants.isHasNoughtHeight + 15 : (tabBarController?.tabBar.frame.size.height ?? 50) + Constants.tableViewAdditionalInset
-        bannerView.snp.makeConstraints {
-            $0.bottom.equalToSuperview().inset(topInset)
-        }
-        
-        bannerView.adUnitID = AppConstants.googleBannerADKey
-        bannerView.rootViewController = self
-        bannerView.load(GADRequest())
-    }
     
     private func addSubViews() {
         view.addSubview(tableView)

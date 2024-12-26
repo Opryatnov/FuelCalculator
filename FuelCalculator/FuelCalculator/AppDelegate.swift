@@ -1,15 +1,8 @@
-//
-//  AppDelegate.swift
-//  FuelCalculator
-//
-//  Created by Dmitriy Opryatnov on 1.08.24.
-//
-
 import UIKit
 import FirebaseCore
-import GoogleMobileAds
 import AppTrackingTransparency
 import AdSupport
+import Appodeal
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -19,7 +12,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             self.requestTrackingAuthorization()
         }
         FirebaseApp.configure()
-        GADMobileAds.sharedInstance().start(completionHandler: nil)
+        Appodeal.setInitializationDelegate(self)
+        Appodeal.initialize(
+            withApiKey: "d724c30afa39cc0753abd83b7c0d78639642519f9f53142d",
+            types: [.interstitial, .banner]
+        )
         fetchCurrencies()
         return true
     }
@@ -68,5 +65,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         } else {
             print("Tracking authorization is not available for iOS versions below 14.0")
         }
+    }
+}
+
+extension AppDelegate: AppodealInitializationDelegate {
+    func appodealSDKDidInitialize() {
+        // Appodeal SDK did complete initialization
     }
 }
